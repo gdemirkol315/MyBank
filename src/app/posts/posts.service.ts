@@ -11,7 +11,7 @@ export class PostsService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts() {
+  getPosts(): Post[] {
     this.http
       .get<{ message: string; posts: Post[] }>(
         "http://localhost:3000/api/posts"
@@ -20,6 +20,7 @@ export class PostsService {
         this.posts = postData.posts;
         this.postsUpdated.next([...this.posts]);
       });
+    return this.posts;
   }
 
   getPostUpdateListener() {
