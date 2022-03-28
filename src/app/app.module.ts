@@ -13,6 +13,7 @@ import {HeaderComponent} from "./header/header.component";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from "../../app-routing.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     MatInputModule,
