@@ -59,16 +59,19 @@ export class PostsService {
       });
   }
 
-  getPost(id: string): Post {
-    // @ts-ignore
-    return {...this.posts.find(p => p.id === id)};
+  getPost(id: string) {
+    return this.http.get<{ _id: string, title: string, content: string }>(this.apiLink + "/" + id);
   }
 
   updatePost(id: string, title: string, content: string) {
     const post: Post = {id: id, title: title, content: content};
     this.http.put(this.apiLink + "/" + id, post)
       .subscribe(response => {
-
+        const updatedPosts = [...this.posts];
+        const oldPostIndex = updatedPosts.findIndex(p => p.id === post.id);
+        updatedPosts[oldPostIndex] = post;
+        this.posts = updatedPosts;
+        this.postsUpdated.next([...this.posts]);
       });
 
   }
