@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {map, Subject} from "rxjs";
 
 import {Post} from "./post.model";
+import * as url from "url";
+import {response} from "express";
 
 @Injectable({providedIn: "root"})
 export class PostsService {
@@ -55,5 +57,19 @@ export class PostsService {
         this.posts = this.posts.filter(post => post.id != id);
         this.postsUpdated.next([...this.posts]);
       });
+  }
+
+  getPost(id: string): Post {
+    // @ts-ignore
+    return {...this.posts.find(p => p.id === id)};
+  }
+
+  updatePost(id: string, title: string, content: string) {
+    const post: Post = {id: id, title: title, content: content};
+    this.http.put(this.apiLink + "/" + id, post)
+      .subscribe(response => {
+
+      });
+
   }
 }
