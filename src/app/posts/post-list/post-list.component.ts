@@ -12,6 +12,7 @@ import { PostsService } from "../posts.service";
 export class PostListComponent implements OnInit, OnDestroy {
 
   posts: Post[] = [];
+  isLoading: boolean = true;
   private postsSub: Subscription;
 
   constructor(public postsService: PostsService) {}
@@ -21,6 +22,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     console.log(this.posts);
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((posts: Post[]) => {
+        this.isLoading = false;
         this.posts = posts;
       });
   }
