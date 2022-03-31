@@ -5,6 +5,7 @@ import {map, Subject} from "rxjs";
 import {Post} from "./post.model";
 import * as url from "url";
 import {response} from "express";
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: "root"})
 export class PostsService {
@@ -12,7 +13,7 @@ export class PostsService {
   private postsUpdated = new Subject<Post[]>();
   private apiLink = 'http://localhost:3000/api/posts';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   getPosts(): Post[] {
@@ -48,6 +49,7 @@ export class PostsService {
         post.id = responseData.postId;
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
+        this.navigateHome();
       });
   }
 
@@ -72,7 +74,11 @@ export class PostsService {
         updatedPosts[oldPostIndex] = post;
         this.posts = updatedPosts;
         this.postsUpdated.next([...this.posts]);
+        this.navigateHome();
       });
+  }
 
+  private navigateHome(){
+    this.router.navigate(["/"]);
   }
 }
