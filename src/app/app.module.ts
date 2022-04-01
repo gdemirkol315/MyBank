@@ -15,13 +15,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "../../app-routing.module";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {NewLoanComponent} from "./new-loan-form/new-loan.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
     PostCreateComponent,
-    HeaderComponent
+    HeaderComponent,
+    NewLoanComponent
   ],
   imports: [
     BrowserModule,
