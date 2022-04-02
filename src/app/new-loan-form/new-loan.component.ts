@@ -6,13 +6,15 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {NewLoan} from "./new-loan.model";
 
 @Component({
-  selector: "app-post-create",
+  selector: "new-loan",
   templateUrl: "./new-loan.component.html",
   styleUrls: ["./new-loan.component.css"]
 })
 export class NewLoanComponent implements OnInit {
 
   public newLoan: NewLoan;
+  periodicityVals: string[] = ['Monthly', 'Quarterly','Semi-anually','Anually']
+
   isLoading = true;
 
   constructor(public newLoanService: NewLoanService, public route: ActivatedRoute) {

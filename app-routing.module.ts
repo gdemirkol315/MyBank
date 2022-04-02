@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {PostListComponent} from "./src/app/posts/post-list/post-list.component";
 import {PostCreateComponent} from "./src/app/posts/post-create/post-create.component";
+import {NewLoanComponent} from "./src/app/new-loan-form/new-loan.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'edit/:postId',
     component: PostCreateComponent
+  },
+  {
+    path: 'newloan',
+    component: NewLoanComponent
   }
 ]
 

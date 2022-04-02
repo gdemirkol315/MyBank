@@ -11,6 +11,7 @@ mongoose.connect("mongodb+srv://goerk:QqjQ1MW6ZekNjsNR@cluster0.n0kfb.mongodb.ne
   })
   .catch(() => {
     console.log('Connection lost!!')
+    console.log('Check if ur IP address in IPWhiteList!!')
   });
 
 app.use(bodyParser.json());

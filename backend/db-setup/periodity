@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+mongo mongodb://myServerAddress/myDbName <<EOF
+db.periodicity_val.insertOne(
+   { "periodicity_short" : "Q",
+     "periodicity" : "Quarterly"
+   })
+EOF
