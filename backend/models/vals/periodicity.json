@@ -1,0 +1,18 @@
+[
+  {
+    "period": "Monthly",
+    "periodEnum": "M"
+  },
+  {
+    "period": "Quarterly",
+    "periodEnum": "Q"
+  },
+  {
+    "period": "SemiAnually",
+    "periodEnum": "H"
+  },
+  {
+    "period": "Anually",
+    "periodEnum": "Y"
+  }
+]

@@ -3,8 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {map, Subject} from "rxjs";
 
 import {Post} from "./post.model";
-import * as url from "url";
-import {response} from "express";
 import {Router} from "@angular/router";
 
 @Injectable({providedIn: "root"})

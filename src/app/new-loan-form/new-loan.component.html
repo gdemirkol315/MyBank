@@ -28,7 +28,7 @@
       <mat-label>Periodicity</mat-label>
       <mat-select>
         <mat-option *ngFor="let periodicity of periodicityVals" [value]="periodicity">
-          {{periodicity}}
+          {{periodicity.period}}
         </mat-option>
       </mat-select>
     </mat-form-field>

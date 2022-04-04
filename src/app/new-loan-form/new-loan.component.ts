@@ -13,7 +13,7 @@ import {NewLoan} from "./new-loan.model";
 export class NewLoanComponent implements OnInit {
 
   public newLoan: NewLoan;
-  periodicityVals: string[] = ['Monthly', 'Quarterly','Semi-anually','Anually']
+  periodicityVals;
 
   isLoading = true;
 
@@ -22,6 +22,7 @@ export class NewLoanComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = false;
+    this.periodicityVals = this.newLoanService.getPeriodicity();
   }
 
   onSavePost(form: NgForm) {
