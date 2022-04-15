@@ -2,8 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 
 import {NewLoanService} from "./new-loan.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {NewLoan} from "./new-loan.model";
+import {Subscription} from "rxjs";
+import {Period} from "./period.model";
 
 @Component({
   selector: "new-loan",
@@ -13,16 +15,26 @@ import {NewLoan} from "./new-loan.model";
 export class NewLoanComponent implements OnInit {
 
   public newLoan: NewLoan;
-  periodicityVals;
-
+  periodVals;
+  private periodsSub: Subscription;
   isLoading = true;
 
   constructor(public newLoanService: NewLoanService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.isLoading = false;
-    this.periodicityVals = this.newLoanService.getPeriodicity();
+
+    this.periodsSub = this.newLoanService.getPeriodUpdateListener()
+      .subscribe((periods: Period[]) => {
+        this.periodVals=periods;
+        this.isLoading = false;
+      });
+    this.newLoanService.getPeriodicity();
+
+    if (this.periodVals != null) {
+      this.isLoading = false;
+    }
+
   }
 
   onSavePost(form: NgForm) {

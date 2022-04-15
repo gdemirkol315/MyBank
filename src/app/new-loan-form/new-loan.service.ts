@@ -1,14 +1,16 @@
 import {Injectable, OnInit} from "@angular/core";
-import {map} from "rxjs";
+import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Periodicity} from "../common/enums/periodicity.enum";
+import {Period} from "./period.model";
 
 @Injectable({providedIn: "root"})
-export class NewLoanService implements OnInit{
+export class NewLoanService implements OnInit {
+
+  private periods = new Subject<Period[]>();
 
   constructor(private http: HttpClient) {
   }
-  
+
 
   ngOnInit(): void {
     this.getPeriodicity();
@@ -16,13 +18,21 @@ export class NewLoanService implements OnInit{
 
   getPeriodicity() {
     this.http
-      .get<{ message: string; periodicities: any }>(
+      .get<{ message: string; posts: any }>(
         'http://localhost:3000/api/newloan/periods'
       )
-      .subscribe(periodicities => {
-        return periodicities;
+      .subscribe(result => {
+
+        this.periods.next(result.posts.map(period => {
+          return {
+            periodEnum: period.periodEnum,
+            period: period.period
+          }
+        }));
       });
   }
 
-
+  getPeriodUpdateListener() {
+    return this.periods.asObservable();
+  }
 }
