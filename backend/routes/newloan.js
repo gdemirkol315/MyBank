@@ -4,7 +4,7 @@ const Periodicity = require("../models/periodicity");
 const router = express.Router();
 
 router.get("/periods", (req, res) => {
-  Periodicity.find().then(documents => {
+  Periodicity.find().sort('order').then(documents => {
     res.status(200).json({
       message: "Periodicity fetched successfully!",
       posts: documents

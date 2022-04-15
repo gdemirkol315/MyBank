@@ -1,18 +1,22 @@
 [
   {
     "period": "Monthly",
-    "periodEnum": "M"
+    "periodEnum": "M",
+    "order": 1
   },
   {
     "period": "Quarterly",
-    "periodEnum": "Q"
+    "periodEnum": "Q",
+    "order": 2
   },
   {
     "period": "SemiAnually",
-    "periodEnum": "H"
+    "periodEnum": "H",
+    "order": 3
   },
   {
     "period": "Anually",
-    "periodEnum": "Y"
+    "periodEnum": "Y",
+    "order": 4
   }
 ]

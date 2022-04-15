@@ -25,15 +25,20 @@ function setup() {
   console.log('Setup success!');
 }
 
-function savePeriods(){
+function savePeriods() {
   let periods = readFile('../models/vals/periodicity.json');
   mongoose.connection.db.dropCollection('periods', function (err, result) {
   });
-  for (let i in periods) {
-    let periodicity = new Period({period: periods[i].period, periodEnum: periods[i].periodEnum});
-    periodicity.save();
-  }
-  console.log('Periods saved!');
+  let periodDocuments = periods.map(period=>{
+    return new Period({
+      period: period.period,
+      periodEnum: period.periodEnum,
+      order: period.order
+    });
+  })
+  Period.insertMany(periodDocuments).then(
+    console.log('inserted many periods')
+  );
 }
 
 function readFile(path) {
