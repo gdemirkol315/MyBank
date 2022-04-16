@@ -40,4 +40,8 @@ export class NewLoanComponent implements OnInit {
   onSavePost(form: NgForm) {
 
   }
+
+  ccyprint(ccy) {
+    console.log(ccy);
+  }
 }

@@ -2,7 +2,7 @@
   <h4>Please fill in loan details:</h4>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSavePost(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
-    <currency-dropdown></currency-dropdown>
+    <currency-dropdown #ccy></currency-dropdown>
     <mat-form-field>
       <input
         matInput
@@ -58,6 +58,10 @@
     <button
       mat-raised-button
       color="accent"
-      type="submit">Generate Payment Schedule</button>
+      type="submit">Generate Payment Schedule</button>    <button
+      mat-raised-button
+      color="accent"
+      (click)="ccyprint(ccy.ccySelected)"
+      >ccy</button>
   </form>
 </mat-card>

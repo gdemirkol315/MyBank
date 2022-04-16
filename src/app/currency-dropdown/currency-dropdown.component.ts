@@ -10,6 +10,7 @@ import {CurrencyService} from "./currency.service";
 })
 export class CurrencyDropdownComponent implements OnInit {
   currencies;
+  ccySelected;
   private currenciesSub: Subscription;
   isLoading = true;
 
@@ -25,4 +26,7 @@ export class CurrencyDropdownComponent implements OnInit {
     this.currencyService.getCurrencies();
   }
 
+  setSelection(selection) {
+    this.ccySelected=selection.value.code;
+  }
 }
