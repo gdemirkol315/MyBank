@@ -2,17 +2,22 @@
   <h4>Please fill in loan details:</h4>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSavePost(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
+    <currency-dropdown></currency-dropdown>
     <mat-form-field>
       <input
         matInput
         type="number"
         name="amount"
+        min="0"
         [ngModel]="newLoan?.amount"
         #amount="ngModel"
         required
         placeholder="Loan Amount">
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
+    <mat-error *ngIf="amount.errors?.['min']">
+      Amount must be greater than €0.00
+    </mat-error>
     <mat-form-field>
       <input
         matInput
