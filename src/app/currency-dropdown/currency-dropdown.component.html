@@ -1,7 +1,7 @@
 <mat-form-field appearance="fill">
   <mat-label>Currency</mat-label>
   <mat-select>
-    <mat-option *ngFor="let currency of currencyList" [value]="currency">
+    <mat-option *ngFor="let currency of currencies" [value]="currency">
       {{currency.text}}
     </mat-option>
   </mat-select>

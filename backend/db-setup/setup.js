@@ -26,7 +26,7 @@ function setup() {
 }
 
 function savePeriods() {
-  let periods = readFile('../models/vals/periodicity.json');
+  let periods = readFile('../models/vals/periods.json');
   mongoose.connection.db.dropCollection('periods', function (err, result) {
   });
   let periodDocuments = periods.map(period=>{

@@ -1,14 +1,20 @@
 const express = require('express');
-const Periodicity = require("../models/periodicity");
+const JsonReader = require("../common/utils/json-reader")
 
 const router = express.Router();
 
 router.get("/periods", (req, res) => {
-  Periodicity.find().sort('order').then(documents => {
+
     res.status(200).json({
       message: "Periodicity fetched successfully!",
-      posts: documents
+      posts: JsonReader.getJsonContent('periods.json')
     });
+
+});
+router.get("/currencies", (req, res) => {
+  res.status(200).json({
+    message: "Currencies fetched successfully!",
+    currencies: JsonReader.getJsonContent('currency.json')
   });
 });
 
