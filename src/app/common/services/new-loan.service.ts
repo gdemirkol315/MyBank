@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from "@angular/core";
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Period} from "./period.model";
+import {Period} from "../models/period.model";
 
 @Injectable({providedIn: "root"})
 export class NewLoanService implements OnInit {

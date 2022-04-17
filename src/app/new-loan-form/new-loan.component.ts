@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 
-import {NewLoanService} from "./new-loan.service";
+import {NewLoanService} from "../common/services/new-loan.service";
 import {ActivatedRoute} from "@angular/router";
-import {NewLoan} from "./new-loan.model";
+import {NewLoan} from "../common/models/new-loan.model";
 import {Subscription} from "rxjs";
-import {Period} from "./period.model";
+import {Period} from "../common/models/period.model";
 
 @Component({
   selector: "new-loan",

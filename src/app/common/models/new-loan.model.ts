@@ -1,4 +1,4 @@
-import {Periodicity} from "../common/enums/periodicity.enum";
+import {Periodicity} from "../enums/periodicity.enum";
 
 export interface NewLoan {
   id: string;

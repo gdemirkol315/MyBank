@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Currency} from "./currency.model";
-import {CurrencyService} from "./currency.service";
+import {Currency} from "../common/models/currency.model";
+import {CurrencyService} from "../common/services/currency.service";
 
 @Component({
   selector: 'currency-dropdown',
@@ -18,15 +18,15 @@ export class CurrencyDropdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currenciesSub = this.currencyService.getCurrencyUpdateListener()
+    this.currenciesSub = this.currencyService.getDataUpdateListener()
       .subscribe((currencies: Currency[]) => {
-        this.currencies = currencies;
+        this.currencies = CurrencyService.mapToCurrency(currencies);
         this.isLoading = false;
       });
     this.currencyService.getCurrencies();
   }
 
   setSelection(selection) {
-    this.ccySelected=selection.value.code;
+    this.ccySelected = selection.value.code;
   }
 }

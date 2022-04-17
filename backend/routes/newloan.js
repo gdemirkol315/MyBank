@@ -14,7 +14,7 @@ router.get("/periods", (req, res) => {
 router.get("/currencies", (req, res) => {
   res.status(200).json({
     message: "Currencies fetched successfully!",
-    currencies: JsonReader.getJsonContent('currency.json')
+    dataSet: JsonReader.getJsonContent('currency.json')
   });
 });
 
