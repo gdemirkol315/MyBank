@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
   <mat-label>Periodicity</mat-label>
-  <mat-select #selection (selectionChange)="setSelection(selection)">
+  <mat-select #selection (selectionChange)="setSelection(selection)" required>
     <mat-option *ngFor="let periodicity of periodVals" [value]="periodicity">
       {{periodicity.period}}
     </mat-option>

@@ -19,10 +19,12 @@
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
     <br>
-    <mat-error *ngIf="amount.errors?.['min']">
-      Amount must be greater than €0.00
-    </mat-error>
-    <br>
+    <div *ngIf="amount.errors?.['min']">
+      <mat-error>
+        Amount must be greater than €0.00
+      </mat-error>
+      <br>
+    </div>
 
     <mat-form-field>
       <input
@@ -42,7 +44,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Choose utilization date</mat-label>
-      <input matInput [matDatepicker]="utilizationDate">
+      <input matInput [matDatepicker]="utilizationDate" required>
       <mat-datepicker-toggle matSuffix [for]="utilizationDate"></mat-datepicker-toggle>
       <mat-datepicker #utilizationDate></mat-datepicker>
     </mat-form-field>
@@ -50,7 +52,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Choose maturity date</mat-label>
-      <input matInput [matDatepicker]="firstPaymentDate">
+      <input matInput [matDatepicker]="firstPaymentDate" required>
       <mat-datepicker-toggle matSuffix [for]="firstPaymentDate"></mat-datepicker-toggle>
       <mat-datepicker #firstPaymentDate></mat-datepicker>
     </mat-form-field>
