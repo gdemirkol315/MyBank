@@ -33,6 +33,7 @@
         type="number"
         name="interestRate"
         min="0"
+        max="1"
         [ngModel]="newLoan?.interestRate"
         #interestRate="ngModel"
         required
@@ -43,6 +44,12 @@
     <div *ngIf="interestRate.errors?.['min']">
       <mat-error>
         Interest rate can not have a negative value.
+      </mat-error>
+      <br>
+    </div>
+    <div *ngIf="interestRate.errors?.['max']">
+      <mat-error>
+        Interest rate can not have more than %100. Please enter a value between 0.00 and 1.00.
       </mat-error>
       <br>
     </div>
