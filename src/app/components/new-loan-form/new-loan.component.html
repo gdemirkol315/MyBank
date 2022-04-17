@@ -32,6 +32,7 @@
         matInput
         type="number"
         name="interestRate"
+        min="0"
         [ngModel]="newLoan?.interestRate"
         #interestRate="ngModel"
         required
@@ -39,7 +40,12 @@
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
     <br>
-
+    <div *ngIf="interestRate.errors?.['min']">
+      <mat-error>
+        Interest rate can not have a negative value.
+      </mat-error>
+      <br>
+    </div>
     <period-dropdown #period></period-dropdown>
     <br>
 
