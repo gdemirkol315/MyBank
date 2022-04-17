@@ -1,7 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
-import {NewLoan} from "../common/models/new-loan.model";
+import {Loan} from "../../models/new-loan.model";
+
 
 @Component({
   selector: "new-loan",
@@ -9,7 +10,7 @@ import {NewLoan} from "../common/models/new-loan.model";
 })
 export class NewLoanComponent implements OnInit {
 
-  public newLoan: NewLoan;
+  newLoan = new Loan();
   isLoading = false;
 
   constructor(public route: ActivatedRoute) {
@@ -24,7 +25,13 @@ export class NewLoanComponent implements OnInit {
 
   }
 
-  ccyprint(ccy) {
-    console.log(ccy);
+  addDate(dateType: string, date) {
+    if (dateType == 'utilizationDate') {
+      this.newLoan.utilizationDate = new Date(date);
+    } else if (dateType == 'firstPaymentDate') {
+      this.newLoan.firstPaymentDate = new Date(date);
+    } else if (dateType == 'maturityDate') {
+      this.newLoan.maturityDate = new Date(date);
+    }
   }
 }

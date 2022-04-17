@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Period} from "../common/models/period.model";
+
 import {Subscription} from "rxjs";
-import {PeriodService} from "../common/services/period.service";
+import {Period} from "../../models/period.model";
+import {PeriodService} from "../../services/period.service";
 
 @Component({
   selector: 'period-dropdown',

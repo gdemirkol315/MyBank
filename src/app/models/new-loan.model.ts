@@ -1,5 +1,5 @@
 
-export interface NewLoan {
+export class Loan {
   id: string;
   amount: number;
   interestRate: string;

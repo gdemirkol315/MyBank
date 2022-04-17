@@ -12,7 +12,7 @@
         matInput
         type="number"
         name="amount"
-        min="1"
+        min="500"
         [ngModel]="newLoan?.amount"
         #amount="ngModel"
         required
@@ -21,7 +21,7 @@
     <br>
     <div *ngIf="amount.errors?.['min']">
       <mat-error>
-        Amount must be greater than €1.00
+        Amount must be greater than €500.00
       </mat-error>
       <br>
     </div>
@@ -45,7 +45,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Choose utilization date</mat-label>
-      <input matInput [matDatepicker]="utilizationDate" required>
+      <input matInput [matDatepicker]="utilizationDate" required (dateChange)="addDate('utilizationDate',$event.value)" >
       <mat-datepicker-toggle matSuffix [for]="utilizationDate"></mat-datepicker-toggle>
       <mat-datepicker #utilizationDate></mat-datepicker>
     </mat-form-field>
@@ -53,20 +53,28 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Choose maturity date</mat-label>
-      <input matInput [matDatepicker]="firstPaymentDate" required>
-      <mat-datepicker-toggle matSuffix [for]="firstPaymentDate"></mat-datepicker-toggle>
-      <mat-datepicker #firstPaymentDate></mat-datepicker>
-    </mat-form-field>
-    <br>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Choose first installment date</mat-label>
-      <input matInput [matDatepicker]="maturityDate">
+      <input matInput [matDatepicker]="maturityDate" required (dateChange)="addDate('maturityDate',$event.value)">
       <mat-datepicker-toggle matSuffix [for]="maturityDate"></mat-datepicker-toggle>
       <mat-datepicker #maturityDate></mat-datepicker>
     </mat-form-field>
     <br>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Choose first installment date</mat-label>
+      <input matInput [matDatepicker]="firstPaymentDate" (dateChange)="addDate('firstPaymentDate',$event.value)">
+      <mat-datepicker-toggle matSuffix [for]="firstPaymentDate"></mat-datepicker-toggle>
+      <mat-datepicker #firstPaymentDate></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <div *ngIf="newLoan?.maturityDate < newLoan?.firstPaymentDate
+      || newLoan?.maturityDate < newLoan?.utilizationDate
+      || newLoan?.utilizationDate > newLoan?.firstPaymentDate">
+      <mat-error>Please enter valid dates.</mat-error>
+      <mat-error *ngIf="newLoan?.maturityDate < newLoan?.firstPaymentDate">First installment date cannot be older than maturity date.</mat-error>
+      <mat-error *ngIf="newLoan?.maturityDate < newLoan?.utilizationDate">Utilization date cannot be older than maturity date.</mat-error>
+      <mat-error *ngIf="newLoan?.utilizationDate > newLoan?.firstPaymentDate">First installment date cannot be earlier than utilization date.</mat-error>
+      <br>
+    </div>
     <button
       mat-raised-button
       color="accent"

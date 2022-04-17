@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Currency} from "../common/models/currency.model";
-import {CurrencyService} from "../common/services/currency.service";
-import {PERIOD} from "@angular/cdk/keycodes";
+import {CurrencyService} from "../../services/currency.service";
+import {Currency} from "../../models/currency.model";
 
 @Component({
   selector: 'currency-dropdown',
