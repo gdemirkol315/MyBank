@@ -10,10 +10,10 @@ export class CurrencyService extends DataService implements OnInit {
   }
 
   getCurrencies() {
-    this.getData('newloan/currencies');
+    this.subscribeTo('newloan/currencies');
   }
 
-  static mapToCurrency(currencies: Currency[]) {
+  static mapCurrencies(currencies: Currency[]) {
     return currencies.map(currency => {
       return {
         code: currency.code,

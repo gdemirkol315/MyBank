@@ -7,7 +7,7 @@ router.get("/periods", (req, res) => {
 
     res.status(200).json({
       message: "Periodicity fetched successfully!",
-      posts: JsonReader.getJsonContent('periods.json')
+      dataSet: JsonReader.getJsonContent('periods.json')
     });
 
 });

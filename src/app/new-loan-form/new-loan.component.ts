@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 
-import {NewLoanService} from "../common/services/new-loan.service";
+import {PeriodService} from "../common/services/period.service";
 import {ActivatedRoute} from "@angular/router";
 import {NewLoan} from "../common/models/new-loan.model";
 import {Subscription} from "rxjs";
@@ -19,17 +19,17 @@ export class NewLoanComponent implements OnInit {
   private periodsSub: Subscription;
   isLoading = true;
 
-  constructor(public newLoanService: NewLoanService, public route: ActivatedRoute) {
+  constructor(public periodService: PeriodService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
 
-    this.periodsSub = this.newLoanService.getPeriodUpdateListener()
+    this.periodsSub = this.periodService.getPeriodUpdateListener()
       .subscribe((periods: Period[]) => {
-        this.periodVals=periods;
+        this.periodVals=PeriodService.mapPeriods(periods);
         this.isLoading = false;
       });
-    this.newLoanService.getPeriodicity();
+    this.periodService.getPeriods();
 
     if (this.periodVals != null) {
       this.isLoading = false;

@@ -18,9 +18,9 @@ export class CurrencyDropdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currenciesSub = this.currencyService.getDataUpdateListener()
+    this.currenciesSub = this.currencyService.getObservable()
       .subscribe((currencies: Currency[]) => {
-        this.currencies = CurrencyService.mapToCurrency(currencies);
+        this.currencies = CurrencyService.mapCurrencies(currencies);
         this.isLoading = false;
       });
     this.currencyService.getCurrencies();
