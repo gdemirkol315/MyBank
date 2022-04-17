@@ -2,7 +2,10 @@
   <h4>Please fill in loan details:</h4>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSavePost(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
+
     <currency-dropdown #ccy></currency-dropdown>
+    <br>
+
     <mat-form-field>
       <input
         matInput
@@ -15,9 +18,12 @@
         placeholder="Loan Amount">
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
+    <br>
     <mat-error *ngIf="amount.errors?.['min']">
       Amount must be greater than €0.00
     </mat-error>
+    <br>
+
     <mat-form-field>
       <input
         matInput
@@ -29,39 +35,39 @@
         placeholder="Interest Rate">
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Periodicity</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let periodicity of periodVals" [value]="periodicity">
-          {{periodicity.period}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <br>
+
+    <period-dropdown #period></period-dropdown>
+    <br>
+
     <mat-form-field appearance="fill">
       <mat-label>Choose utilization date</mat-label>
       <input matInput [matDatepicker]="utilizationDate">
       <mat-datepicker-toggle matSuffix [for]="utilizationDate"></mat-datepicker-toggle>
       <mat-datepicker #utilizationDate></mat-datepicker>
     </mat-form-field>
+    <br>
+
     <mat-form-field appearance="fill">
       <mat-label>Choose maturity date</mat-label>
       <input matInput [matDatepicker]="firstPaymentDate">
       <mat-datepicker-toggle matSuffix [for]="firstPaymentDate"></mat-datepicker-toggle>
       <mat-datepicker #firstPaymentDate></mat-datepicker>
     </mat-form-field>
+    <br>
+
     <mat-form-field appearance="fill">
       <mat-label>Choose first installment date</mat-label>
       <input matInput [matDatepicker]="maturityDate">
       <mat-datepicker-toggle matSuffix [for]="maturityDate"></mat-datepicker-toggle>
       <mat-datepicker #maturityDate></mat-datepicker>
     </mat-form-field>
+    <br>
+
     <button
       mat-raised-button
       color="accent"
-      type="submit">Generate Payment Schedule</button>    <button
-      mat-raised-button
-      color="accent"
-      (click)="ccyprint(ccy.ccySelected)"
-      >ccy</button>
+      type="submit">Generate Payment Schedule
+    </button>
   </form>
 </mat-card>

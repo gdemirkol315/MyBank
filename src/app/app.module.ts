@@ -20,6 +20,7 @@ import {NewLoanComponent} from "./new-loan-form/new-loan.component";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { CurrencyDropdownComponent } from './currency-dropdown/currency-dropdown.component';
+import { PeriodDropdownComponent } from './period-dropdown/period-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CurrencyDropdownComponent } from './currency-dropdown/currency-dropdown
     PostCreateComponent,
     HeaderComponent,
     NewLoanComponent,
-    CurrencyDropdownComponent
+    CurrencyDropdownComponent,
+    PeriodDropdownComponent
   ],
   imports: [
     BrowserModule,

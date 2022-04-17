@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Currency} from "../common/models/currency.model";
 import {CurrencyService} from "../common/services/currency.service";
+import {PERIOD} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'currency-dropdown',
-  templateUrl: './currency-dropdown.component.html',
-  styleUrls: ['./currency-dropdown.component.css']
+  templateUrl: './currency-dropdown.component.html'
 })
 export class CurrencyDropdownComponent implements OnInit {
   currencies;
@@ -27,6 +27,6 @@ export class CurrencyDropdownComponent implements OnInit {
   }
 
   setSelection(selection) {
-    this.ccySelected = selection.value.code;
+    this.ccySelected = selection.value.periodEnum;
   }
 }
