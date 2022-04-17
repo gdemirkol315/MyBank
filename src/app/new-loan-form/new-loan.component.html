@@ -7,26 +7,27 @@
     <br>
 
     <mat-form-field>
+      <mat-label>Loan Amount</mat-label>
       <input
         matInput
         type="number"
         name="amount"
-        min="0"
+        min="1"
         [ngModel]="newLoan?.amount"
         #amount="ngModel"
         required
-        placeholder="Loan Amount">
-      <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
+        placeholder="i.e: 5000.23">
     </mat-form-field>
     <br>
     <div *ngIf="amount.errors?.['min']">
       <mat-error>
-        Amount must be greater than €0.00
+        Amount must be greater than €1.00
       </mat-error>
       <br>
     </div>
 
     <mat-form-field>
+      <mat-label>Interest Rate</mat-label>
       <input
         matInput
         type="number"
@@ -34,7 +35,7 @@
         [ngModel]="newLoan?.interestRate"
         #interestRate="ngModel"
         required
-        placeholder="Interest Rate">
+        placeholder="i.e: 0.01">
       <!--<mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>-->
     </mat-form-field>
     <br>
