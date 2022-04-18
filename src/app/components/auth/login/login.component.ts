@@ -10,7 +10,8 @@ export class LoginComponent {
   password: string;
   isLoading = false;
 
-  login(loginForm: NgForm) {
-
+  onLogin(form: NgForm) {
+    console.log(form.value.email);
+    console.log(form.value.password);
   }
 }
