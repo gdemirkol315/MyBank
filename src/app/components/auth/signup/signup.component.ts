@@ -10,10 +10,15 @@ export class SignupComponent {
 
   isLoading = false;
 
-  constructor(private authService:AuthService) {
+  constructor(private authService: AuthService) {
   }
 
   onSignUp(form: NgForm) {
-    this.authService.createUser(form.value.email, form.value.password)
+    if (form.invalid) {
+      return;
+    } else {
+      this.authService.createUser(form.value.email, form.value.password);
+    }
+
   }
 }
