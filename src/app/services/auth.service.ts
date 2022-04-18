@@ -21,4 +21,9 @@ export class AuthService extends DataService implements OnInit {
 
   }
 
+  login(email: string, password: string) {
+    const user: AuthData = {email: email, password: password};
+    this.postData('user/login', user);
+  }
+
 }

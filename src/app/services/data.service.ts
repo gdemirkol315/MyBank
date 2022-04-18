@@ -1,7 +1,6 @@
 import {Injectable, Type} from "@angular/core";
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {response} from "express";
 
 @Injectable({providedIn: "root"})
 export class DataService {

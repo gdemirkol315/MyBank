@@ -31,17 +31,22 @@ router.post("/login", (req, res, next) => {
     if (!user) {
       failedAuth(res);
     }
-    return bcrypt.compare(req.body.password, user.password);
+    return {userExists: bcrypt.compare(req.body.password, user.password), user: user};
   }).then(result => {
-    if (!result) {
+    if (!result.userExists) {
       failedAuth(res);
     }
-    const token = jwt.sign({email: user.email, userId: user._id},tokenKey,{expiresIn: "1h"});
+    const token = jwt.sign(
+      {email: result.user.email, userId: result.user._id},
+      tokenKey,
+      {expiresIn: "1h"}
+    );
     res.status(200).json({
       token: token
     });
   })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       failedAuth(res);
     })
 });
