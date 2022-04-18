@@ -1,33 +1,40 @@
 import {Injectable, Type} from "@angular/core";
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {response} from "express";
 
 @Injectable({providedIn: "root"})
 export class DataService {
 
   // @ts-ignore
   private _dataSubject = new Subject<Type[]>();
+  private localhost = 'http://localhost:3000/api/';
 
   constructor(private http: HttpClient) {
   }
 
-  subscribeTo(apiURLExtension:string) {
+  protected postData(apiURLExtension: string, data) {
+    this.http.post(this.localhost + apiURLExtension, data).subscribe(response => {
+      console.log(response)
+    });
+  }
+
+  protected subscribeTo(apiURLExtension: string) {
     this.http
       .get<{ message: string; dataSet: any }>(
-        'http://localhost:3000/api/' + apiURLExtension
+        this.localhost + apiURLExtension
       )
       .subscribe(result => {
         this._dataSubject.next(result.dataSet);
       });
   }
 
-  getObservable() {
+  protected getObservable() {
     return this._dataSubject.asObservable();
   }
 
-
   // @ts-ignore
-  get dataSubject(): Subject<Type> {
+  protected get dataSubject(): Subject<Type> {
     return this._dataSubject;
   }
 }
