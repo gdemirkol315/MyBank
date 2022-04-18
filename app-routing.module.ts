@@ -2,11 +2,15 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {NewLoanComponent} from "./src/app/components/new-loan-form/new-loan.component";
 import {LoginComponent} from "./src/app/components/auth/login/login.component";
+import {SignupComponent} from "./src/app/components/auth/signup/signup.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
+  }, {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'newloan',

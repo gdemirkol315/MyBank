@@ -20,6 +20,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { CurrencyDropdownComponent } from './components/currency-dropdown/currency-dropdown.component';
 import { PeriodDropdownComponent } from './components/period-dropdown/period-dropdown.component';
 import {LoginComponent} from "./components/auth/login/login.component";
+import {SignupComponent} from "./components/auth/signup/signup.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {LoginComponent} from "./components/auth/login/login.component";
     NewLoanComponent,
     CurrencyDropdownComponent,
     PeriodDropdownComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
