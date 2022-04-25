@@ -6,7 +6,7 @@ import {Subject} from "rxjs";
 @Injectable({providedIn: "root"})
 export class AuthService extends DataService implements OnInit {
 
-  private token = new Subject<boolean>();
+  private token = new Subject<string>();
 
   ngOnInit(): void {
     this.subscribeToSignUp();
@@ -40,6 +40,10 @@ export class AuthService extends DataService implements OnInit {
       this.token.next(responseWithToken['token']);
       localStorage.setItem('token', responseWithToken['token']);
     }
+  }
+
+  getToken(){
+    return this.token['token'];
   }
 
   getObservableToken() {
