@@ -21,6 +21,7 @@ import { CurrencyDropdownComponent } from './components/currency-dropdown/curren
 import { PeriodDropdownComponent } from './components/period-dropdown/period-dropdown.component';
 import {LoginComponent} from "./components/auth/login/login.component";
 import {SignupComponent} from "./components/auth/signup/signup.component";
+import {AlertComponent} from "./components/alert/alert.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {SignupComponent} from "./components/auth/signup/signup.component";
     CurrencyDropdownComponent,
     PeriodDropdownComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
