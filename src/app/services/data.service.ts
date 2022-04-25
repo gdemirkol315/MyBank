@@ -13,9 +13,7 @@ export class DataService {
   }
 
   protected postData(apiURLExtension: string, data) {
-    this.http.post(this.localhost + apiURLExtension, data).subscribe(response => {
-      console.log(response)
-    });
+    return this.http.post(this.localhost + apiURLExtension, data);
   }
 
   protected subscribeTo(apiURLExtension: string) {

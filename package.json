@@ -30,6 +30,7 @@
     "mongoose": "^6.2.8",
     "mongoose-unique-validator": "^3.0.0",
     "mysql": "^2.18.1",
+    "ngx-indexed-db": "^10.0.0",
     "properties-reader": "^2.2.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

@@ -1,5 +1,5 @@
 <mat-card>
-  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" class="center">
+  <form (submit)="onLogin(loginForm.value)" #loginForm="ngForm" class="center">
     <mat-form-field>
       <input
         matInput
