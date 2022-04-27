@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 export class LoginComponent {
   username: string;
   password: string;
-  isLoading = false;
   private invalidLogin: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -21,13 +20,13 @@ export class LoginComponent {
     if (form.invalid) {
       return;
     } else {
-      this.authService.getObservableToken().subscribe(
+      this.authService.getAuthStatusListener().subscribe(
         tokenChange => {
-          console.log('tokenchange:' + tokenChange);
+
         }
       )
       this.authService.login(form['email'], form['password']);
-
+      this.router.navigate(['/newloan']);
     }
   }
 }
