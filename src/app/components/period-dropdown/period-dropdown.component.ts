@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import {Subscription} from "rxjs";
 import {Period} from "../../models/period.model";
@@ -13,8 +13,8 @@ export class PeriodDropdownComponent implements OnInit {
 
   periodVals: Period[];
   private periodsSub: Subscription;
+  @Output() periodChange = new EventEmitter<string>();
   isLoading = true;
-  private selection: string;
 
   constructor(private periodService: PeriodService) { }
 
@@ -32,6 +32,6 @@ export class PeriodDropdownComponent implements OnInit {
   }
 
   setSelection(selection) {
-    this.selection = selection.value.periodEnum;
+    this.periodChange.emit(selection.value.periodEnum);
   }
 }

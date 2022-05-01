@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {CurrencyService} from "../../services/currency.service";
 import {Currency} from "../../models/currency.model";
@@ -9,7 +9,7 @@ import {Currency} from "../../models/currency.model";
 })
 export class CurrencyDropdownComponent implements OnInit {
   currencies;
-  ccySelected;
+  @Output() ccyChange = new EventEmitter<string>();
   private currenciesSub: Subscription;
   isLoading = true;
 
@@ -26,6 +26,6 @@ export class CurrencyDropdownComponent implements OnInit {
   }
 
   setSelection(selection) {
-    this.ccySelected = selection.value.periodEnum;
+    this.ccyChange.emit(selection.value.code);
   }
 }

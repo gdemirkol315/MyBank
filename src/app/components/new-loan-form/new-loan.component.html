@@ -1,9 +1,9 @@
 <mat-card>
   <h4>Please fill in loan details:</h4>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form (submit)="onSavePost(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
+  <form (submit)="onGenerate(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
 
-    <currency-dropdown #ccy></currency-dropdown>
+    <currency-dropdown (ccyChange)="ccyPrint($event)"></currency-dropdown>
     <br>
 
     <mat-form-field>
@@ -53,7 +53,7 @@
       </mat-error>
       <br>
     </div>
-    <period-dropdown #period></period-dropdown>
+    <period-dropdown (periodChange)="ccyPrint($event)"></period-dropdown>
     <br>
 
     <mat-form-field appearance="fill">
