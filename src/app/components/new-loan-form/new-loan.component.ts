@@ -23,20 +23,10 @@ export class NewLoanComponent implements OnInit {
   }
 
   onGenerate(form: NgForm) {
-    console.log('front-end:\n' +'amount: ' + form.value.amount,
-      'ccy: ' + form.value.ccySelected,
-      'interestRate: ' + form.value.interestRate,
-      'periodicity: ' + form.value.selectedPeriod,
-      'utilizationDate: ' + form.value.utilizationDate,
-      'firstPaymentDate: ' + form.value.firstPaymentDate,
-      'maturityDate: ' + form.value.maturityDate);
-    this.newLoanService.generate(form.value.amount,
-      form.value.ccy,
-      form.value.interestRate,
-      form.value.periodicity,
-      form.value.utilizationDate,
-      form.value.firstPaymentDate,
-      form.value.maturityDate);
+    this.newLoan.amount = form.value.amount;
+    this.newLoan.interestRate = form.value.interestRate;
+    console.log(this.newLoan);
+    this.newLoanService.generate(this.newLoan);
   }
 
   addDate(dateType: string, date) {
@@ -49,7 +39,11 @@ export class NewLoanComponent implements OnInit {
     }
   }
 
-  ccyPrint(event) {
-    console.log(event)
+  ccySet(event) {
+    this.newLoan.ccy = event;
+  }
+
+  periodSet(event) {
+    this.newLoan.periodicity = event;
   }
 }
