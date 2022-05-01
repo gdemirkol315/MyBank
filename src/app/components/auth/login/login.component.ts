@@ -22,11 +22,10 @@ export class LoginComponent {
     } else {
       this.authService.getAuthStatusListener().subscribe(
         tokenChange => {
-
+          this.router.navigate(['/newloan']);
         }
       )
       this.authService.login(form['email'], form['password']);
-      this.router.navigate(['/newloan']);
     }
   }
 }
