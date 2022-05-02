@@ -1,1 +1,17 @@
-<p>customer works!</p>
+<button
+  mat-raised-button
+  color="accent"
+  (click)="setFindCustomerMode()">Find Customer
+</button>
+<button
+  mat-raised-button
+  color="accent"
+  (click)="setAddCustomerMode()"
+  >Add Customer
+</button>
+<div *ngIf="findCustomerMode==true">
+  <!--TODO: searchbar-->
+</div>
+<div *ngIf="addCustomerMode==true">
+  <!--TODO: customer entry form-->
+</div>

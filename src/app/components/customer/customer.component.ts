@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'customer',
@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor() { }
+  findCustomerMode: boolean = false;
+  addCustomerMode: boolean = false;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  setFindCustomerMode() {
+    this.findCustomerMode = true;
+    this.addCustomerMode = false;
+  }
+
+  setAddCustomerMode() {
+    this.findCustomerMode = false;
+    this.addCustomerMode = true;
   }
 
 }
