@@ -2,15 +2,12 @@ import {Injectable, OnInit} from "@angular/core";
 import {DataService} from "./data.service";
 import {AuthData} from "../models/auth-data.model";
 import {Subject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({providedIn: "root"})
 export class AuthService extends DataService implements OnInit {
 
   private token: string;
   private authStatusListener = new Subject<boolean>();
-  private jwtHelper: JwtHelperService;
 
   ngOnInit(): void {
     this.subscribeToSignUp();
@@ -35,6 +32,7 @@ export class AuthService extends DataService implements OnInit {
         this.token = responseWithToken['token'];
         this.authStatusListener.next(true);
         localStorage.setItem('token', responseWithToken['token']);
+        setTimeout(()=>localStorage.removeItem('token'),1.8e+6);
       }
     });
   }
