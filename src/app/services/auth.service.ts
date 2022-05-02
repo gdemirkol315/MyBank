@@ -15,7 +15,7 @@ export class AuthService extends DataService implements OnInit {
 
 
   subscribeToSignUp() {
-    this.subscribeTo('user/signup');
+    this.subscribeToGet('user/signup');
   }
 
   createUser(email: string, password: string) {

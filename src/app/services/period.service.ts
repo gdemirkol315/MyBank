@@ -11,11 +11,11 @@ export class PeriodService extends DataService implements OnInit {
   }
 
   getPeriods() {
-    this.subscribeTo('newloan/periods');
+    this.subscribeToGet('newloan/periods');
   }
 
   getPeriodUpdateListener() {
-    return this.dataSubject.asObservable();
+    return this.getObservableGet();
   }
 
   static mapPeriods(periods: Period[]) {
