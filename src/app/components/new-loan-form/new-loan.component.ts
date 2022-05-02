@@ -18,14 +18,14 @@ export class NewLoanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.newLoanService.getObservableNewLoan().subscribe(paymentSchedule => {
+      console.log(paymentSchedule);
+    });
   }
 
   onGenerate(form: NgForm) {
     this.newLoan.amount = form.value.amount;
     this.newLoan.interestRate = form.value.interestRate;
-    this.newLoanService.getObservableNewLoan().subscribe(paymentSchedule => {
-      console.log(paymentSchedule);
-    });
     this.newLoanService.generate(this.newLoan);
   }
 
