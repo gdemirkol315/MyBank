@@ -4,6 +4,7 @@ import {NewLoanComponent} from "./src/app/components/new-loan-form/new-loan.comp
 import {LoginComponent} from "./src/app/components/auth/login/login.component";
 import {SignupComponent} from "./src/app/components/auth/signup/signup.component";
 import {AuthGuard} from "./src/app/guard/auth.guard";
+import {CustomerComponent} from "./src/app/components/customer/customer.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'newloan',
     component: NewLoanComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent,
     canActivate: [AuthGuard]
   }
 ]

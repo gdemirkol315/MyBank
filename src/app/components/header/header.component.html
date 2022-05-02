@@ -3,4 +3,5 @@
   <a *ngIf="!userIsAuthenticated" mat-button routerLink="/signup">Sing-Up</a>
   <button *ngIf="userIsAuthenticated" mat-button (click)="logout()"> Logout</button>
   <a *ngIf="userIsAuthenticated" mat-button routerLink="/newloan" routerLinkActive="mat-accent">New Loan</a>
+  <a *ngIf="userIsAuthenticated" mat-button routerLink="/customer" routerLinkActive="mat-accent">Customer</a>
 </mat-toolbar>
