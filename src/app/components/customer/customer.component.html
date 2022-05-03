@@ -3,15 +3,62 @@
   color="accent"
   (click)="setFindCustomerMode()">Find Customer
 </button>
+<span></span>
 <button
   mat-raised-button
   color="accent"
   (click)="setAddCustomerMode()"
-  >Add Customer
+>Add Customer
 </button>
+<br>
+<br>
 <div *ngIf="findCustomerMode==true">
-  <!--TODO: searchbar-->
+  <form (submit)="search(searchText)" #customerSearch="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="searchText"
+        #searchText
+        required
+        placeholder="Customer number">
+    </mat-form-field>
+    <span></span>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit">Search
+    </button>
+  </form>
 </div>
 <div *ngIf="addCustomerMode==true">
-  <!--TODO: customer entry form-->
+  <form (submit)="addCustomer()" #customerAdd="ngForm" *ngIf="!isLoading">
+    <dropdown optionHeader="Customer Type" optionURL="customer/type"></dropdown>
+    <br>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        #name
+        required
+        placeholder="First name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="LastName"
+        #lastname
+        required
+        placeholder="Last name">
+    </mat-form-field>
+    <br>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit">Add
+    </button>
+  </form>
 </div>

@@ -24,6 +24,7 @@ import {SignupComponent} from "./components/auth/signup/signup.component";
 import {AlertComponent} from "./components/alert/alert.component";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
 import { CustomerComponent } from './components/customer/customer.component';
+import {DropdownComponent} from "./components/dropdown/dropdown.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CustomerComponent } from './components/customer/customer.component';
     LoginComponent,
     SignupComponent,
     AlertComponent,
-    CustomerComponent
+    CustomerComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

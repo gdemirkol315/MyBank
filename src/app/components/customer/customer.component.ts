@@ -9,6 +9,8 @@ export class CustomerComponent implements OnInit {
 
   findCustomerMode: boolean = false;
   addCustomerMode: boolean = false;
+  searchText: string = "";
+  isLoading: boolean = false;
 
   constructor() {
   }
@@ -26,4 +28,11 @@ export class CustomerComponent implements OnInit {
     this.addCustomerMode = true;
   }
 
+  search(customerNumber) {
+
+  }
+
+  addCustomer() {
+
+  }
 }

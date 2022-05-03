@@ -1,0 +1,14 @@
+{
+  "name": "customertype",
+  "values": [
+    {
+      "type": "Indiviual"
+    },
+    {
+      "type": "SME"
+    },
+    {
+      "type": "Corporate"
+    }
+  ]
+}
