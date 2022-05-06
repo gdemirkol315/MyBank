@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {DataService} from "./data.service";
 import {Currency} from "../models/currency.model";
+import {Customer} from "../models/customer.model";
 
 @Injectable({providedIn: "root"})
 export class CustomerService extends DataService {
@@ -14,13 +15,8 @@ export class CustomerService extends DataService {
     return super.getObservableGet();
   }
 
-  static mapCurrencies(currencies: Currency[]) {
-    return currencies.map(currency => {
-      return {
-        code: currency.code,
-        text: currency.text
-      }
-    });
+  postCustomer(customer: Customer){
+    this.postData('customer',customer);
   }
 
 }

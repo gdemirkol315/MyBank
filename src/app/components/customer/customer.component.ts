@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {CustomerService} from "../../services/customer.service";
+import {Customer} from "../../models/customer.model";
 
 @Component({
   selector: 'customer',
@@ -11,8 +14,11 @@ export class CustomerComponent implements OnInit {
   addCustomerMode: boolean = false;
   searchText: string = "";
   isLoading: boolean = false;
+  name:string;
+  lastName:string;
+  customerType: string;
 
-  constructor() {
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit(): void {
@@ -32,7 +38,12 @@ export class CustomerComponent implements OnInit {
 
   }
 
-  addCustomer() {
+  addCustomer(customerAdd: NgForm) {
+    let customer = new Customer(customerAdd.value.name,customerAdd.value.lastName,this.customerType);
+    this.customerService.postCustomer(customer);
+  }
 
+  customerTypeSet(event) {
+    this.customerType = event;
   }
 }

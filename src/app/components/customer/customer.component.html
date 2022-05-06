@@ -32,15 +32,16 @@
   </form>
 </div>
 <div *ngIf="addCustomerMode==true">
-  <form (submit)="addCustomer()" #customerAdd="ngForm" *ngIf="!isLoading">
-    <dropdown optionHeader="Customer Type" optionURL="customer/type"></dropdown>
+  <form (submit)="addCustomer(customerAdd)" #customerAdd="ngForm" *ngIf="!isLoading">
+    <dropdown optionHeader="Customer Type" optionURL="customer/type" (optionChange)="customerTypeSet($event)"></dropdown>
     <br>
     <mat-form-field>
       <input
         matInput
         type="text"
         name="name"
-        #name
+        [ngModel]="name"
+        #name="ngModel"
         required
         placeholder="First name">
     </mat-form-field>
@@ -49,8 +50,9 @@
       <input
         matInput
         type="text"
-        name="LastName"
-        #lastname
+        name="lastName"
+        [ngModel]="lastName"
+        #lastName="ngModel"
         required
         placeholder="Last name">
     </mat-form-field>
