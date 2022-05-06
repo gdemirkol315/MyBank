@@ -2,7 +2,7 @@
   <mat-label>{{optionHeader}}</mat-label>
   <mat-select #selection (selectionChange)="setSelection(selection)" required>
     <mat-option *ngFor="let option of options" [value]="option">
-      {{option}}
+      {{option.text}}
     </mat-option>
   </mat-select>
 </mat-form-field>

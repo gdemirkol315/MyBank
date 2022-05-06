@@ -1,16 +1,19 @@
 export class Utils {
   static mapDropdownValues(options) {
     let result = null;
-    if (options.name === 'currency') {
-      result= options.values.map(currency => {
+    if (Object.keys(options.values[0])[0]==='code' || Object.keys(options.values[0])[1]==='code') {
+      result = options.values.map(val => {
         return {
-          code: currency.code,
-          text: currency.text
+          code: val.code,
+          text: val.text
         }
       });
-    } else if (options.name === 'customertype'){
-      result= options.values.map(customertype => {
-        return customertype.type
+    } else {
+      result = options.values.map(val => {
+        return {
+          code: val.text,
+          text: val.text
+        }
       });
     }
     return result;

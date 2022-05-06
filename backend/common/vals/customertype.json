@@ -2,13 +2,13 @@
   "name": "customertype",
   "values": [
     {
-      "type": "Indiviual"
+      "text": "Indiviual"
     },
     {
-      "type": "SME"
+      "text": "SME"
     },
     {
-      "type": "Corporate"
+      "text": "Corporate"
     }
   ]
 }

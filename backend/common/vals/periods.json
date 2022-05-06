@@ -1,22 +1,21 @@
-[
-  {
-    "period": "Monthly",
-    "periodEnum": "M",
-    "order": 1
-  },
-  {
-    "period": "Quarterly",
-    "periodEnum": "Q",
-    "order": 2
-  },
-  {
-    "period": "SemiAnually",
-    "periodEnum": "H",
-    "order": 3
-  },
-  {
-    "period": "Anually",
-    "periodEnum": "Y",
-    "order": 4
-  }
-]
+{
+  "name": "periodicity",
+  "values": [
+    {
+      "text": "Monthly",
+      "code": "M"
+    },
+    {
+      "text": "Quarterly",
+      "code": "Q"
+    },
+    {
+      "text": "SemiAnually",
+      "code": "H"
+    },
+    {
+      "text": "Anually",
+      "code": "Y"
+    }
+  ]
+}

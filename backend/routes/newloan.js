@@ -4,7 +4,7 @@ const mainNewLoan = require("./newloan_main");
 const router = express.Router();
 
 router.get("/periods", (req, res) => {
-
+    console.log(JsonReader.getJsonContent('periods.json'));
     res.status(200).json({
       message: "Periodicity fetched successfully!",
       dataSet: JsonReader.getJsonContent('periods.json')
@@ -12,6 +12,7 @@ router.get("/periods", (req, res) => {
 
 });
 router.get("/currencies", (req, res) => {
+  console.log(JsonReader.getJsonContent('currency.json'));
   res.status(200).json({
     message: "Currencies fetched successfully!",
     dataSet: JsonReader.getJsonContent('currency.json')
