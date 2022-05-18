@@ -33,7 +33,7 @@
 </div>
 <div *ngIf="addCustomerMode==true">
   <form (submit)="addCustomer(customerAdd)" #customerAdd="ngForm" *ngIf="!isLoading">
-    <dropdown optionHeader="Customer Type" optionURL="customer/type" (optionChange)="customerTypeSet($event)"></dropdown>
+    <dropdown optionHeader="Customer Type" optionURL="customer/type" valName="customertype" (optionChange)="customerTypeSet($event)"></dropdown>
     <br>
     <mat-form-field>
       <input
