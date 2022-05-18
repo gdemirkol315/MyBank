@@ -3,7 +3,7 @@
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onGenerate(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
 
-    <dropdown optionHeader="Currency" optionURL="newloan/currencies" (optionChange)="ccySet($event)"></dropdown>
+    <dropdown optionHeader="Currency" optionURL="newloan" valName="currencies" (optionChange)="ccySet($event)"></dropdown>
     <br>
 
     <mat-form-field>
@@ -53,7 +53,7 @@
       </mat-error>
       <br>
     </div>
-    <dropdown optionHeader="Periods" optionURL="newloan/periods" (optionChange)="periodSet($event)"></dropdown>
+    <dropdown optionHeader="Periods" optionURL="newloan" valName="periods" (optionChange)="periodSet($event)"></dropdown>
     <br>
 
     <mat-form-field appearance="fill">

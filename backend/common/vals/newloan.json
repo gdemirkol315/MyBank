@@ -1,6 +1,5 @@
 {
-  "name": "currency",
-  "values": [
+  "currencies": [
     {
       "code": "AFN",
       "text": "Afghanistan Afghanis – AFN"
@@ -416,6 +415,24 @@
     {
       "code": "ZMK",
       "text": "Zambia Kwacha – ZMK"
+    }
+  ],
+  "periods": [
+    {
+      "text": "Monthly",
+      "code": "M"
+    },
+    {
+      "text": "Quarterly",
+      "code": "Q"
+    },
+    {
+      "text": "SemiAnually",
+      "code": "H"
+    },
+    {
+      "text": "Anually",
+      "code": "Y"
     }
   ]
 }
