@@ -14,9 +14,12 @@ export class CustomerComponent implements OnInit {
   addCustomerMode: boolean = false;
   searchText: string = "";
   isLoading: boolean = false;
-  name:string;
-  lastName:string;
+  name: string;
+  lastName: string;
   customerType: string;
+  address: string;
+  rating: number;
+  private entityType: string;
 
   constructor(private customerService: CustomerService) {
   }
@@ -39,11 +42,20 @@ export class CustomerComponent implements OnInit {
   }
 
   addCustomer(customerAdd: NgForm) {
-    let customer = new Customer(customerAdd.value.name,customerAdd.value.lastName,this.customerType);
+    let customer = new Customer(customerAdd.value.name,
+      customerAdd.value.lastName,
+      this.customerType,
+      customerAdd.value.address,
+      this.entityType,
+      customerAdd.value.rating);
     this.customerService.postCustomer(customer);
   }
 
   customerTypeSet(event) {
     this.customerType = event;
+  }
+
+  entityTypeSet(event) {
+    this.entityType = event;
   }
 }

@@ -1,0 +1,38 @@
+{
+  "corporate": [
+    {
+      "code": "OG",
+      "text": "OG"
+    },
+    {
+      "code": "KG",
+      "text": "KG"
+    },
+    {
+      "code": "OEG",
+      "text": "OEG"
+    },
+    {
+      "code": "KEG",
+      "text": "KEG"
+    }
+  ],
+  "sme": [
+    {
+      "code": "GmbH",
+      "text": "GmbH"
+    },
+    {
+      "code": "Privatstiftung",
+      "text": "Privatstiftung"
+    },
+    {
+      "code": "Verein",
+      "text": "Verein"
+    },
+    {
+      "code": "e.U.",
+      "text": "e.U."
+    }
+  ]
+}

@@ -33,32 +33,82 @@
 </div>
 <div *ngIf="addCustomerMode==true">
   <form (submit)="addCustomer(customerAdd)" #customerAdd="ngForm" *ngIf="!isLoading">
-    <dropdown optionHeader="Customer Type" optionURL="customer/type" valName="customertype" (optionChange)="customerTypeSet($event)"></dropdown>
+    <dropdown optionHeader="Customer Type" optionURL="customer/type" valName="customertype"
+              (optionChange)="customerTypeSet($event)"></dropdown>
     <br>
-    <mat-form-field>
-      <input
-        matInput
-        type="text"
-        name="name"
-        [(ngModel)]="name"
-        required
-        placeholder="First name">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input
-        matInput
-        type="text"
-        name="lastName"
-        [(ngModel)]="lastName"
-        required
-        placeholder="Last name">
-    </mat-form-field>
-    <br>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit">Add
-    </button>
+    <div *ngIf="customerType">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="address"
+          [(ngModel)]="address"
+          required
+          placeholder="Address">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          name="rating"
+          [(ngModel)]="rating"
+          placeholder="Rating"
+          min="0">
+      </mat-form-field>
+      <div *ngIf="customerType=='Individual'">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            required
+            placeholder="First name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="lastName"
+            [(ngModel)]="lastName"
+            required
+            placeholder="Last name">
+        </mat-form-field>
+        <br>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">Add
+        </button>
+      </div>
+      <div *ngIf="customerType=='Corporate' || customerType=='SME'">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            required
+            placeholder="Company Name">
+        </mat-form-field>
+        <br>
+        <div *ngIf="customerType=='Corporate'">
+          <dropdown optionHeader="Entity Type" optionURL="customer/entitytype" valName="corporate"
+                    (optionChange)="entityTypeSet($event)"></dropdown>
+        </div>
+        <div *ngIf="customerType=='SME'">
+          <dropdown optionHeader="Entity Type" optionURL="customer/entitytype" valName="sme"
+                    (optionChange)="entityTypeSet($event)"></dropdown>
+        </div>
+        <br>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">Add
+        </button>
+      </div>
+    </div>
   </form>
 </div>
