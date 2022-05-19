@@ -32,7 +32,7 @@ router.post("", (req, res, next) => {
   });
   customer.save().then(createdCustomer => {
     res.status(201).json({
-      message: 'Customer added successfully',
+      message: 'Customer created successfully',
       customerId: createdCustomer._id
     });
   });

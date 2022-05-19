@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer.model";
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'customer',
@@ -21,7 +22,7 @@ export class CustomerComponent implements OnInit {
   rating: number;
   private entityType: string;
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService, private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -48,7 +49,15 @@ export class CustomerComponent implements OnInit {
       customerAdd.value.address,
       this.entityType,
       customerAdd.value.rating);
-    this.customerService.postCustomer(customer);
+    this.customerService.postCustomer(customer)
+      .subscribe(
+      response => {
+        if (response['message'] === 'Customer created successfully') {
+          this.alertService.success('Customer Created successfully! Customer ID: ' + response['customerId'], { keepAfterRouteChange: true });
+          //this.router.navigate(['/login'], { relativeTo: this.route });
+        }
+      }
+    );;
   }
 
   customerTypeSet(event) {

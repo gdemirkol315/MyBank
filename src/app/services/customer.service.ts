@@ -17,11 +17,7 @@ export class CustomerService extends DataService {
 
   postCustomer(customer: Customer) {
     console.log(customer)
-    this.postData('customer', customer).subscribe(
-      newCustomer => {
-        console.log(newCustomer);
-      }
-    );
+    return this.postData('customer', customer);
   }
 
 }
