@@ -11,12 +11,17 @@ export class CustomerService extends DataService {
     this.subscribeToGet('customer/type');
   }
 
-  getObservableCustomerTypes(){
+  getObservableCustomerTypes() {
     return super.getObservableGet();
   }
 
-  postCustomer(customer: Customer){
-    this.postData('customer',customer);
+  postCustomer(customer: Customer) {
+    console.log(customer)
+    this.postData('customer', customer).subscribe(
+      newCustomer => {
+        console.log(newCustomer);
+      }
+    );
   }
 
 }
