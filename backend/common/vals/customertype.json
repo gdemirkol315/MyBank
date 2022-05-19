@@ -1,12 +1,15 @@
 {
   "customertype": [
     {
+      "code": "Indiviual",
       "text": "Indiviual"
     },
     {
+      "code": "SME",
       "text": "SME"
     },
     {
+      "code": "Corporate",
       "text": "Corporate"
     }
   ]
