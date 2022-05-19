@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private authListenerSubs: Subscription;
-  userIsAuthenticated = false;
-  constructor(private authService: AuthService, private router: Router) {
+
+  constructor(public authService: AuthService, private router: Router) {
   }
 
   logout() {
@@ -20,11 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authListenerSubs = this.authService
-      .getAuthStatusListener()
-      .subscribe(isAuthenticated => {
-        this.userIsAuthenticated = isAuthenticated;
-      });
   }
 
   ngOnDestroy(): void {
