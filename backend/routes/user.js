@@ -28,32 +28,31 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   User.findOne({email: req.body.email}).then(user => {
-    if (!user) {
-      failedAuth(res);
+    if (!user.email) {
+      failedAuth(res, 'User does not exists!');
     }
-    return {userExists: bcrypt.compare(req.body.password, user.password), user: user};
-  }).then(result => {
-    if (!result.userExists) {
-      failedAuth(res);
-    }
-    const token = jwt.sign(
-      {email: result.user.email, userId: result.user._id},
-      tokenKey,
-      {expiresIn: "1h"}
-    );
-    res.status(200).json({
-      token: token
+
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+      if (err) return failedAuth(res, err);
+      if (!result) return failedAuth(res, 'Invalid password!');
+
+      const token = jwt.sign(
+        {email: user.email, userId: user._id},
+        tokenKey,
+        {expiresIn: "1h"});
+      res.status(200).json({
+        token: token
+      });
     });
+  }).catch((err) => {
+    console.log(err);
+    failedAuth(res, err);
   })
-    .catch((err) => {
-      console.log(err);
-      failedAuth(res);
-    })
 });
 
-function failedAuth(res) {
+function failedAuth(res, message) {
   res.status(401).json({
-    message: "Auth failed!"
+    message: message
   });
 }
 
