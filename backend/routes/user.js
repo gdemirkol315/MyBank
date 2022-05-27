@@ -28,9 +28,6 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   User.findOne({email: req.body.email}).then(user => {
-    if (!user.email) {
-      failedAuth(res, 'User does not exists!');
-    }
 
     bcrypt.compare(req.body.password, user.password, (err, result) => {
       if (err) return failedAuth(res, err);
@@ -44,9 +41,8 @@ router.post("/login", (req, res, next) => {
         token: token
       });
     });
-  }).catch((err) => {
-    console.log(err);
-    failedAuth(res, err);
+  }).catch(err => {
+    failedAuth(res, "User does not exists!");
   })
 });
 
