@@ -34,8 +34,8 @@ export class AuthService extends DataService implements OnInit {
       .subscribe(responseWithToken => {
       if (responseWithToken && responseWithToken['token']) {
         this.token = responseWithToken['token'];
-        this.authStatusListener.next(true);
         localStorage.setItem('token', responseWithToken['token']);
+        this.authStatusListener.next(true);
         setTimeout(()=>localStorage.removeItem('token'),1.8e+6);
       }
     },err => {
