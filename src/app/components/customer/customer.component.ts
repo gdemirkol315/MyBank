@@ -54,10 +54,10 @@ export class CustomerComponent implements OnInit {
       response => {
         if (response['message'] === 'Customer created successfully') {
           this.alertService.success('Customer Created successfully! Customer ID: ' + response['customerId'], { keepAfterRouteChange: true });
-          //this.router.navigate(['/login'], { relativeTo: this.route });
+          customerAdd.resetForm();
         }
       }
-    );;
+    );
   }
 
   customerTypeSet(event) {
