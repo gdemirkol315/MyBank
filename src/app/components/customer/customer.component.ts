@@ -53,7 +53,7 @@ export class CustomerComponent implements OnInit {
       .subscribe(
       response => {
         if (response['message'] === 'Customer created successfully') {
-          this.alertService.success('Customer Created successfully! Customer ID: ' + response['customerId'], { keepAfterRouteChange: true });
+          this.alertService.success('Customer ' + response['customerName'] +' created successfully!', { keepAfterRouteChange: true });
           customerAdd.resetForm();
         }
       }
