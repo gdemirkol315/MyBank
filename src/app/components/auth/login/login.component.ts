@@ -26,7 +26,7 @@ export class LoginComponent {
           if (this.authService.isAuthenticated()) {
             this.router.navigate(['/newloan']);
           } else {
-            this.alertService.error(this.authService.errorMessage);
+            this.alertService.error(this.authService.errorMessage,{ autoClose: true });
           }
         }
       )
