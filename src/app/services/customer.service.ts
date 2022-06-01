@@ -16,8 +16,11 @@ export class CustomerService extends DataService {
   }
 
   postCustomer(customer: Customer) {
-    console.log(customer)
     return this.postData('customer', customer);
+  }
+
+  searchCustomer(searchText: String){
+    return this.postData('customer/search',searchText);
   }
 
 }

@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer.model";
 import {AlertService} from "../../services/alert.service";
+import {first} from "rxjs";
 
 @Component({
   selector: 'customer',
@@ -38,12 +39,33 @@ export class CustomerComponent implements OnInit {
     this.addCustomerMode = true;
   }
 
-  search(customerNumber) {
+  search(customerSearch: NgForm) {
+    let searchText = customerSearch.value
+    let foundCustomer = new Customer('','', '', '', '', '', 0);
+
+    this.customerService.searchCustomer(searchText).pipe(first()).subscribe(result => {
+      //@ts-ignore
+      console.log(result.foundCustomers);
+      //@ts-ignore
+      (result.foundCustomers).forEach(foundCustomer => {
+        let customer = new Customer(foundCustomer.id,
+          foundCustomer.name,
+          foundCustomer.lastname,
+          foundCustomer.type,
+          foundCustomer.address,
+          foundCustomer.entitytype,
+          foundCustomer.rating)
+        console.log(customer);
+      })
+
+
+    });
 
   }
 
   addCustomer(customerAdd: NgForm) {
-    let customer = new Customer(customerAdd.value.name,
+    let customer = new Customer('',
+      customerAdd.value.name,
       customerAdd.value.lastName,
       this.customerType,
       customerAdd.value.address,
@@ -51,13 +73,13 @@ export class CustomerComponent implements OnInit {
       customerAdd.value.rating);
     this.customerService.postCustomer(customer)
       .subscribe(
-      response => {
-        if (response['message'] === 'Customer created successfully') {
-          this.alertService.success('Customer ' + response['customerName'] +' created successfully!', { autoClose: true });
-          customerAdd.resetForm();
+        response => {
+          if (response['message'] === 'Customer created successfully') {
+            this.alertService.success('Customer ' + response['customerName'] + ' created successfully!', {autoClose: true});
+            customerAdd.resetForm();
+          }
         }
-      }
-    );
+      );
   }
 
   customerTypeSet(event) {

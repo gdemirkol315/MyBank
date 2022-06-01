@@ -6,9 +6,11 @@ export class Customer {
   address:string;
   entitytype:string;
   rating:number;
+  id: string;
 
 
-  constructor(name: string, lastname: string, type: string, address: string, entitytype: string, rating: number) {
+  constructor(id:string, name: string, lastname: string, type: string, address: string, entitytype: string, rating: number) {
+    this.id = id;
     this.name = name;
     this.lastname = lastname;
     this.type = type;

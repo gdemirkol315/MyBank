@@ -12,6 +12,20 @@ router.get("/type", (req, res) => {
 
 });
 
+router.post("/search", (req, res) => {
+  let searchTxt = req.body.searchText;
+  console.log(searchTxt);
+  Customer.find({
+    "name": new RegExp(searchTxt, 'i')
+  }).then(result => {
+    console.log(result)
+    res.status(200).json({
+      message: "Search successful!",
+      foundCustomers: result
+    });
+  });
+});
+
 router.get("/entitytype", (req, res) => {
 
   res.status(200).json({

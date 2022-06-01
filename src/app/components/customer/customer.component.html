@@ -13,15 +13,15 @@
 <br>
 <br>
 <div *ngIf="findCustomerMode==true">
-  <form (submit)="search(searchText)" #customerSearch="ngForm" *ngIf="!isLoading">
+  <form (submit)="search(customerSearch)" #customerSearch="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <input
         matInput
         type="text"
         name="searchText"
-        #searchText
+        [(ngModel)]="searchText"
         required
-        placeholder="Customer number">
+        placeholder="Customer Name">
     </mat-form-field>
     <span></span>
     <button
