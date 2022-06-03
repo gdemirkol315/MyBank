@@ -94,4 +94,8 @@
       type="submit">Generate Payment Schedule
     </button>
   </form>
+  <div *ngIf="generated==true">
+    <custom-table [dataSource]=generatedPaymentTable>
+    </custom-table>
+  </div>
 </mat-card>

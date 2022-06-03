@@ -1,21 +1,20 @@
-import {Component, Input} from '@angular/core';
-import {Subscription} from "rxjs";
-import {DropdownService} from "../../services/dropdown.service";
+import {Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
   selector: 'custom-table',
   templateUrl: './table.component.html'
 })
-export class TableComponent  {
+export class TableComponent implements OnInit{
 
-  @Input() content: string;
+  @Input() dataSource;
+  displayedColumns: string[];
 
-
-  constructor(private dropdownService: DropdownService) {
-
+  ngOnInit(): void {
+    if (this.dataSource.length > 0) {
+      this.displayedColumns = Object.keys(this.dataSource[0]);
+    }
   }
-
 
 
 }

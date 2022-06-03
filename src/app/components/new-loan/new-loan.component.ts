@@ -13,13 +13,17 @@ export class NewLoanComponent implements OnInit {
 
   newLoan = new Loan();
   isLoading = false;
+  generatedPaymentTable;
+  generated = false;
 
   constructor(public route: ActivatedRoute, private newLoanService: NewloanService) {
   }
 
   ngOnInit(): void {
     this.newLoanService.getObservableNewLoan().subscribe(paymentSchedule => {
-      console.log(paymentSchedule);
+      this.generatedPaymentTable = paymentSchedule;
+      console.log( this.generatedPaymentTable)
+      this.generated = (this.generatedPaymentTable.length > 0);
     });
   }
 

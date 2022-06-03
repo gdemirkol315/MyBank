@@ -25,6 +25,7 @@ import {AuthInterceptor} from "./interceptors/auth-interceptor";
 import { CustomerComponent } from './components/customer/customer.component';
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
 import {TableComponent} from "./components/table/table.component";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {TableComponent} from "./components/table/table.component";
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
