@@ -17,7 +17,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NewLoanComponent} from "./components/new-loan/new-loan.component";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import {CurrencyDropdownComponent} from './components/currency-dropdown/currency-dropdown.component';
 import {PeriodDropdownComponent} from './components/period-dropdown/period-dropdown.component';
 import {LoginComponent} from "./components/auth/login/login.component";
 import {SignupComponent} from "./components/auth/signup/signup.component";
@@ -25,19 +24,20 @@ import {AlertComponent} from "./components/alert/alert.component";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
 import { CustomerComponent } from './components/customer/customer.component';
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
+import {TableComponent} from "./components/table/table.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NewLoanComponent,
-    CurrencyDropdownComponent,
     PeriodDropdownComponent,
     LoginComponent,
     SignupComponent,
     AlertComponent,
     CustomerComponent,
-    DropdownComponent
+    DropdownComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
