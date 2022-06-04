@@ -22,6 +22,7 @@ export class CustomerComponent implements OnInit {
   address: string;
   rating: number;
   private entityType: string;
+  foundCustomers: any[] = new Array();
 
   constructor(private customerService: CustomerService, private alertService: AlertService) {
   }
@@ -41,24 +42,9 @@ export class CustomerComponent implements OnInit {
 
   search(customerSearch: NgForm) {
     let searchText = customerSearch.value
-    let foundCustomer = new Customer('','', '', '', '', '', 0);
 
     this.customerService.searchCustomer(searchText).pipe(first()).subscribe(result => {
-      //@ts-ignore
-      console.log(result.foundCustomers);
-      //@ts-ignore
-      (result.foundCustomers).forEach(foundCustomer => {
-        let customer = new Customer(foundCustomer.id,
-          foundCustomer.name,
-          foundCustomer.lastname,
-          foundCustomer.type,
-          foundCustomer.address,
-          foundCustomer.entitytype,
-          foundCustomer.rating)
-        console.log(customer);
-      })
-
-
+      this.foundCustomers = result['foundCustomers'];
     });
 
   }

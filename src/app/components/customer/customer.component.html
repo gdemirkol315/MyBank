@@ -23,6 +23,11 @@
         required
         placeholder="Customer Name">
     </mat-form-field>
+    <br>
+    <div *ngIf="foundCustomers.length > 0">
+      <custom-table [dataSource]="foundCustomers">
+      </custom-table>
+    </div>
     <span></span>
     <button
       mat-raised-button

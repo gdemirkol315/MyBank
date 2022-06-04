@@ -18,7 +18,7 @@ router.post("/search", (req, res) => {
   Customer.find({
     "name": new RegExp(searchTxt, 'i')
   }).then(result => {
-    console.log(result)
+    result.unshift(JsonReader.getJsonContent('foundcustomer_headers.json'));
     res.status(200).json({
       message: "Search successful!",
       foundCustomers: result

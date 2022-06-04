@@ -1,0 +1,6 @@
+{
+  "customerId": "Customer Id##text",
+  "type": "Type##text",
+  "name": "Name##text",
+  "address": "Address##text"
+}
