@@ -24,10 +24,10 @@ export class TableComponent implements OnInit {
   columnKeys: string[]
 
   ngOnInit(): void {
-    this.columnSettings = this.dataSource[0];
-    this.dataSource.shift();
     if (this.dataSource.length > 0) {
-      this.columnKeys = Object.keys(this.dataSource[1]);
+      this.columnSettings = this.dataSource[0];
+      this.columnKeys = Object.keys(this.columnSettings);
+      this.dataSource.shift();
     }
 
   }
