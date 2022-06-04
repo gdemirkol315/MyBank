@@ -1,3 +1,5 @@
+const JsonReader = require("../common/utils/json-reader");
+
 function generateNewLoan(amount, interestRate, periodicity, firstPaymentDate, utilizationDate, maturityDate) {
 
   try {
@@ -36,7 +38,7 @@ function calculatePaymentSchedule(loanAmount, interestRate, frequency, utilizati
     previousPaymentDate = paymentDate;
     paymentDate = getNextPaymentDate(paymentDate, frequency);
   }
-
+  payments.unshift(JsonReader.getJsonContent('newloan_headers.json'));
   return payments;
 }
 
