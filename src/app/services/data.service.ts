@@ -16,6 +16,13 @@ export class DataService {
     return this.http.post(this.localhost + apiURLExtension, data);
   }
 
+  protected getData(apiURLExtension: string) {
+    return this.http
+      .get(
+        this.localhost + apiURLExtension
+      )
+  }
+
   protected subscribeToGet(apiURLExtension: string) {
     this.http
       .get<{ message: string; dataSet: any }>(

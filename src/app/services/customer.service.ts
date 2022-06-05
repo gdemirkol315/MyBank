@@ -1,26 +1,30 @@
 import {Injectable} from "@angular/core";
 import {DataService} from "./data.service";
-import {Currency} from "../models/currency.model";
 import {Customer} from "../models/customer.model";
+import {Subject} from "rxjs";
 
 @Injectable({providedIn: "root"})
 export class CustomerService extends DataService {
 
+  private customer = new Subject();
 
-  getCustomerTypes() {
-    this.subscribeToGet('customer/type');
+  getCustomer(customerId: number) {
+    return this.getData('customer/' + customerId)
+      .subscribe(customerObject => {
+        this.customer.next(customerObject);
+    });
   }
 
-  getObservableCustomerTypes() {
-    return super.getObservableGet();
+  getCustomerObservable(){
+    return this.customer.asObservable();
   }
 
   postCustomer(customer: Customer) {
     return this.postData('customer', customer);
   }
 
-  searchCustomer(searchText: String){
-    return this.postData('customer/search',searchText);
+  searchCustomer(searchText: String) {
+    return this.postData('customer/search', searchText);
   }
 
 }

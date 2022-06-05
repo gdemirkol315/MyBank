@@ -1,0 +1,4 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <custom-table [dataSource]="tableContent"></custom-table>
+</div>
