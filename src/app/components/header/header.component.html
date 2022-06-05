@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
-  <a *ngIf="!authService.isAuthenticated()" mat-button routerLink="/login">Login</a>
-  <a *ngIf="!authService.isAuthenticated()" mat-button routerLink="/signup">Sing-Up</a>
+  <a *ngIf="!authService.isAuthenticated()" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+  <a *ngIf="!authService.isAuthenticated()" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sing-Up</a>
   <button *ngIf="authService.isAuthenticated()" mat-button (click)="logout()"> Logout</button>
   <a *ngIf="authService.isAuthenticated()" mat-button routerLink="/newloan" routerLinkActive="mat-accent">New Loan</a>
   <a *ngIf="authService.isAuthenticated()" mat-button routerLink="/customer" routerLinkActive="mat-accent">Customer</a>

@@ -6,6 +6,7 @@ import {SignupComponent} from "./src/app/components/auth/signup/signup.component
 import {AuthGuard} from "./src/app/guard/auth.guard";
 import {CustomerComponent} from "./src/app/components/customer/customer.component";
 import {TestComponent} from "./src/app/components/test/test.component";
+import {NotFoundComponent} from "./src/app/components/not-found/not-found.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ]
 
