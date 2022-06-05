@@ -23,6 +23,11 @@ router.post("/search", (req, res) => {
       message: "Search successful!",
       foundCustomers: result
     });
+  }).catch(error => {
+    console.log(error);
+    res.status(400).json({
+      message: "Invalid expression given!"
+    });
   });
 });
 

@@ -1,11 +1,23 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-<div *ngFor="let columnKey of columnKeys">
-  <ng-container [matColumnDef]=columnKey>
-    <th mat-header-cell *matHeaderCellDef>{{getColumnName(columnKey)}}</th>
-    <td mat-cell *matCellDef="let element"> {{formatData(element[columnKey],columnKey)}} </td>
-  </ng-container>
-</div>
+  <div *ngFor="let columnKey of columnKeys">
+    <ng-container [matColumnDef]=columnKey>
+      <th mat-header-cell *matHeaderCellDef>{{getColumnName(columnKey)}}</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container
+          *ngIf="isLink(columnKey); then link; else noLink">
+        </ng-container>
+        <ng-template #link>
+          <a [routerLink]="[getLink(columnKey,element)]">
+            {{formatData(element[columnKey], columnKey)}}
+          </a>
+        </ng-template>
+        <ng-template #noLink>
+          {{formatData(element[columnKey], columnKey)}}
+        </ng-template>
+      </td>
+    </ng-container>
+  </div>
 
   <tr mat-header-row *matHeaderRowDef=columnKeys></tr>
   <tr mat-row *matRowDef="let row; columns: columnKeys;"></tr>

@@ -6,6 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
+//TODO: Improve link handling. This is not Clean!!!
+
 export class TableComponent implements OnInit {
   /**
    * This component supplies generic approach for creating tables in angular.
@@ -13,9 +16,12 @@ export class TableComponent implements OnInit {
    * @param  dataSource  is an array of JSON objects that will fill the table.
    *                     First item in the array must have the column settings, as example below.
    *                     technical name should be passed as key and setting must be separated by ##
-   *                     {key: header name##column data type,...}
    *                     {
-   *                        "id": "Id##text",
+   *                        key: header name##column data type##link address##?link address extension variable?,
+   *                        secondKey:...
+ *                        }
+   *                     {
+   *                        "id": "Id##text##customer##?customerId?",
    *                        "principalPayment": "Principal Payment##amount"
    *                     }
    */
@@ -57,5 +63,26 @@ export class TableComponent implements OnInit {
       case "percent":
         return parseFloat(data).toFixed(2) + "%";
     }
+  }
+
+  getLink(columnKey: string, element) {
+    let prefixes = [];
+
+    for (let i = 2; i < this.columnSettings[columnKey].split("##").length; i++) {
+      let prefix: string = this.columnSettings[columnKey].split("##")[i];
+
+      if (prefix.startsWith('?') && prefix.endsWith('?')){
+        prefixes.push(element[prefix.replaceAll('?','')])
+      } else {
+        prefixes.push(this.columnSettings[columnKey].split("##")[i]);
+      }
+    }
+    return prefixes.join("/");
+  }
+
+  isLink(columnKey: string) {
+    if (this.columnSettings[columnKey].split("##")[2] == undefined)
+      return false;
+    return true;
   }
 }
