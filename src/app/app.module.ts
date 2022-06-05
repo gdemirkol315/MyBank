@@ -26,6 +26,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
 import {TableComponent} from "./components/table/table.component";
 import {MatTableModule} from "@angular/material/table";
+import {TestComponent} from "./components/test/test.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatTableModule} from "@angular/material/table";
     AlertComponent,
     CustomerComponent,
     DropdownComponent,
-    TableComponent
+    TableComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
