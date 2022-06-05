@@ -4,7 +4,7 @@ import {NewLoanComponent} from "./src/app/components/new-loan/new-loan.component
 import {LoginComponent} from "./src/app/components/auth/login/login.component";
 import {SignupComponent} from "./src/app/components/auth/signup/signup.component";
 import {AuthGuard} from "./src/app/guard/auth.guard";
-import {CustomerComponent} from "./src/app/components/customer/customer.component";
+import {CustomerFormComponent} from "./src/app/components/customer-form/customer-form.component";
 import {TestComponent} from "./src/app/components/test/test.component";
 
 
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'customer',
-    component: CustomerComponent,
+    component: CustomerFormComponent,
     canActivate: [AuthGuard]
   }
 ]

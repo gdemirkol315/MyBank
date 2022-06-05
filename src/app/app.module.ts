@@ -22,7 +22,7 @@ import {LoginComponent} from "./components/auth/login/login.component";
 import {SignupComponent} from "./components/auth/signup/signup.component";
 import {AlertComponent} from "./components/alert/alert.component";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
-import { CustomerComponent } from './components/customer/customer.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
 import {TableComponent} from "./components/table/table.component";
 import {MatTableModule} from "@angular/material/table";
@@ -37,7 +37,7 @@ import {TestComponent} from "./components/test/test.component";
     LoginComponent,
     SignupComponent,
     AlertComponent,
-    CustomerComponent,
+    CustomerFormComponent,
     DropdownComponent,
     TableComponent,
     TestComponent
