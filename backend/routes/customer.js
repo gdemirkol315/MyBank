@@ -3,17 +3,6 @@ const JsonReader = require("../common/utils/json-reader");
 const Customer = require("../models/customer");
 const router = express.Router();
 
-router.get("/:customerId", (req, res, next) => {
-  Customer.findOne({customerId: req.params.customerId}).then(customer => {
-    if (customer) {
-      let customerTable = [JsonReader.getJsonContent('customerdetail_headers.json'), customer]
-      console.log(customerTable)
-      res.status(200).json(customerTable);
-    } else {
-      res.status(404).json({message: 'Customer not found!'});
-    }
-  });
-});
 
 router.get("/type", (req, res) => {
 
@@ -33,9 +22,18 @@ router.get("/entitytype", (req, res) => {
 
 });
 
+router.get("/:customerId", (req, res, next) => {
+  Customer.findOne({customerId: req.params.customerId})
+    .then(customer => {
+      if (customer) {
+        let customerTable = [JsonReader.getJsonContent('customerdetail_headers.json'), customer]
+        res.status(200).json(customerTable);
+      }
+  })
+});
+
 router.post("/search", (req, res) => {
   let searchTxt = req.body.searchText;
-  console.log(searchTxt);
   Customer.find({
     "name": new RegExp(searchTxt, 'i')
   }).then(result => {
