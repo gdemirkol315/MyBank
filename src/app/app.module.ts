@@ -17,7 +17,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NewLoanComponent} from "./components/new-loan/new-loan.component";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import {PeriodDropdownComponent} from './components/period-dropdown/period-dropdown.component';
 import {LoginComponent} from "./components/auth/login/login.component";
 import {SignupComponent} from "./components/auth/signup/signup.component";
 import {AlertComponent} from "./components/alert/alert.component";
@@ -37,7 +36,6 @@ import {DropdownAutocompleteComponent} from "./components/dropdown-autocomplete/
     AppComponent,
     HeaderComponent,
     NewLoanComponent,
-    PeriodDropdownComponent,
     LoginComponent,
     SignupComponent,
     AlertComponent,

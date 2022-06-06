@@ -10,7 +10,7 @@ import {CustomerService} from "../../services/customer.service";
   selector: "new-loan",
   templateUrl: "./new-loan.component.html"
 })
-export class NewLoanComponent implements OnInit {
+export class NewLoanComponent {
 
   newLoan = new Loan();
   isLoading = false;
@@ -26,18 +26,17 @@ export class NewLoanComponent implements OnInit {
               private customerService: CustomerService) {
   }
 
-  ngOnInit(): void {
-    this.newLoanService.getObservableNewLoan().subscribe(paymentSchedule => {
-      this.generatedPaymentTable = paymentSchedule;
-      console.log( this.generatedPaymentTable)
-      this.generated = (this.generatedPaymentTable.length > 0);
-    });
-  }
 
   onGenerate(form: NgForm) {
     this.newLoan.amount = form.value.amount;
     this.newLoan.interestRate = form.value.interestRate;
-    this.newLoanService.generate(this.newLoan);
+    this.newLoanService.generate(this.newLoan)
+      .subscribe(paymentSchedule => {
+        this.generatedPaymentTable = paymentSchedule;
+        console.log(this.generatedPaymentTable)
+        this.generated = (this.generatedPaymentTable.length > 0);
+      });
+    ;
   }
 
   addDate(dateType: string, date) {

@@ -7,11 +7,8 @@ export class NewloanService extends DataService {
 
 
   generate(newLoan: Loan){
-    this.subscribeToPost('newloan/generate', newLoan);
+    return this.postData('newloan/generate', newLoan);
   }
 
-  getObservableNewLoan(){
-    return super.getObservablePost();
-  }
 
 }

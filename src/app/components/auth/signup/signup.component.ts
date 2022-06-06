@@ -20,7 +20,8 @@ export class SignupComponent {
     if (form.invalid) {
       return;
     } else {
-      this.authService.createUser(form.value.email, form.value.password).subscribe(
+      this.authService.createUser(form.value.email, form.value.password)
+        .subscribe(
         response => {
           if (response['message'] === 'User created!') {
             this.alertService.success('Registration successful', { keepAfterRouteChange: true });

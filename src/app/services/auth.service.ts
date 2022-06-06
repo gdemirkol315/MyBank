@@ -6,26 +6,16 @@ import {AlertService} from "./alert.service";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({providedIn: "root"})
-export class AuthService extends DataService implements OnInit {
+export class AuthService extends DataService {
 
   private token: string;
   private authStatusListener = new Subject<boolean>();
   errorMessage: string;
 
-  ngOnInit(): void {
-    this.subscribeToSignUp();
-  }
-
-
-  subscribeToSignUp() {
-    this.subscribeToGet('user/signup');
-  }
 
   createUser(email: string, password: string) {
-
     const user: AuthData = {email: email, password: password};
     return this.postData('user/signup', user);
-
   }
 
   login(email: string, password: string) {
