@@ -29,6 +29,8 @@ import {MatTableModule} from "@angular/material/table";
 import {TestComponent} from "./components/test/test.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {DropdownAutocompleteComponent} from "./components/dropdown-autocomplete/dropdown-autocomplete.component";
 
 @NgModule({
   declarations: [
@@ -45,26 +47,29 @@ import {CustomerProfileComponent} from "./components/customer-profile/customer-p
     TestComponent,
     CustomerProfileComponent,
     TestComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CustomerProfileComponent,
+    DropdownAutocompleteComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatProgressSpinnerModule,
-    BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatExpansionModule,
+        MatProgressSpinnerModule,
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatTableModule,
+        MatAutocompleteModule
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

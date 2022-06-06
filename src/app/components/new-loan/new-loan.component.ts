@@ -1,9 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {NgForm} from "@angular/forms";
+import {NgForm, NgModel} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
-
+import {Customer} from "../../models/customer.model";
+import {CustomerService} from "../../services/customer.service";
 
 @Component({
   selector: "new-loan",
@@ -15,8 +16,14 @@ export class NewLoanComponent implements OnInit {
   isLoading = false;
   generatedPaymentTable;
   generated = false;
+  nameSearch: string = "";
+  foundCustomers;
+  selectedCustomer: Customer;
 
-  constructor(public route: ActivatedRoute, private newLoanService: NewloanService) {
+
+  constructor(public route: ActivatedRoute,
+              private newLoanService: NewloanService,
+              private customerService: CustomerService) {
   }
 
   ngOnInit(): void {
@@ -49,5 +56,12 @@ export class NewLoanComponent implements OnInit {
 
   periodSet(event) {
     this.newLoan.periodicity = event;
+  }
+
+  searchCustomer(nameSearch: NgModel) {
+    this.customerService.searchCustomer(nameSearch.value)
+      .subscribe(foundCustomers => {
+        this.foundCustomers = foundCustomers;
+      });
   }
 }

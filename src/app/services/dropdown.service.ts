@@ -7,11 +7,7 @@ export class DropdownService extends DataService {
 
 
   getOptions(optionsURL: string) {
-    this.subscribeToGet(optionsURL);
-  }
-
-  getObservableOptions() {
-    return super.getObservableGet();
+    return this.getData(optionsURL);
   }
 
 

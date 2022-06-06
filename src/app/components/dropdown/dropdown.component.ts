@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Utils} from "../../misc/utils";
 import {DropdownService} from "../../services/dropdown.service";
 
 
@@ -11,24 +10,28 @@ import {DropdownService} from "../../services/dropdown.service";
 export class DropdownComponent implements OnInit {
   @Output() options;
   @Output() optionChange = new EventEmitter<string>();
+  @Input() setOptions;
   @Input() optionURL: string;
   @Input() valName: string;
   @Input() optionHeader: string;
   private optionSub: Subscription;
   isLoading = true;
 
-  constructor(private dropdownService: DropdownService) {
+  constructor(protected dropdownService: DropdownService) {
 
   }
 
   ngOnInit(): void {
-    this.optionSub = this.dropdownService.getObservableOptions()
-      .subscribe((options) => {
-        this.options = options[this.valName];
-        this.isLoading = false;
-        this.optionSub.unsubscribe();
-      });
-    this.dropdownService.getOptions(this.optionURL);
+    if (!this.setOptions) {
+      this.dropdownService.getOptions(this.optionURL)
+        .subscribe((options) => {
+          this.options =  options['dataSet'][this.valName];
+          this.isLoading = false;
+        });
+      ;
+    } else if (this.setOptions) {
+      this.options = this.setOptions;
+    }
   }
 
   setSelection(selection) {
