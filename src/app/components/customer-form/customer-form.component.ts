@@ -7,10 +7,10 @@ import {first} from "rxjs";
 
 @Component({
   selector: 'customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  templateUrl: './customer-form.component.html',
+  styleUrls: ['./customer-form.component.css']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerFormComponent implements OnInit {
 
   findCustomerMode: boolean = false;
   addCustomerMode: boolean = false;
