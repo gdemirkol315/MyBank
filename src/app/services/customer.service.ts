@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {DataService} from "./data.service";
 import {Customer} from "../models/customer.model";
-import {Subject} from "rxjs";
+import {first, Subject} from "rxjs";
 
 @Injectable({providedIn: "root"})
 export class CustomerService extends DataService {
@@ -10,12 +10,13 @@ export class CustomerService extends DataService {
 
   getCustomer(customerId: number) {
     return this.getData('customer/' + customerId)
+      .pipe(first())
       .subscribe(customerObject => {
         this.customer.next(customerObject);
-    });
+      });
   }
 
-  getCustomerObservable(){
+  getCustomerObservable() {
     return this.customer.asObservable();
   }
 
