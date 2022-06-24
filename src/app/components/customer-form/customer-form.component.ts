@@ -41,10 +41,19 @@ export class CustomerFormComponent implements OnInit {
   }
 
   search(customerSearch: NgForm) {
-    let searchText = customerSearch.value
+    let searchText = customerSearch.value.searchText
 
     this.customerService.searchCustomer(searchText).pipe(first()).subscribe(result => {
       this.foundCustomers = result['foundCustomers'];
+      this.foundCustomers.unshift({
+        "customerId": "Customer Id##text",
+        "type": "Type##text",
+        "name": "Name##text",
+        "lastname": "Last Name##text",
+        "entitytype": "Entity Type##text",
+        "rating" : "Rating##text",
+        "address": "Address##text"
+      });
     });
 
   }

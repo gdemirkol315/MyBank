@@ -1,14 +1,15 @@
 <form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Number</mat-label>
+    <mat-label>{{header}}</mat-label>
     <input type="text"
-           placeholder="Pick one"
+           [placeholder]="header"
            aria-label="Number"
            matInput
            [formControl]="myControl"
-           [matAutocomplete]="auto">
+           [matAutocomplete]="auto"
+           [ngModel]="searchText" (change)="searchTextChange($event)">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option *ngFor="let option of options" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>

@@ -1,31 +1,43 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {DropdownComponent} from "../dropdown/dropdown.component";
+import {Component, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {map, Observable, startWith} from "rxjs";
+import {first, Observable} from "rxjs";
+import {CustomerService} from "../../services/customer.service";
 
 
 @Component({
   selector: 'dropdown-autocomplete',
   templateUrl: './dropdown-autocomplete.component.html'
 })
-export class DropdownAutocompleteComponent extends DropdownComponent implements OnInit{
-  @Input() optionLimit = 50;
+export class DropdownAutocompleteComponent {
+
+  options: string[];
+  @Input() header;
+  textChange= new Observable<string>();
   myControl = new FormControl('');
-  filteredOptions: Observable<string[]>;
+  searchText: string;
 
 
-  override ngOnInit() {
-    super.ngOnInit();
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''), map(value => this._filter(value || '')),
-    );
+  constructor(private customerService: CustomerService) {
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    if (!this.optionURL){
-      //return this.dropdownService.getOptions(this.optionURL)
-    }
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+
+
+  searchCustomer(value: string) {
+
+    this.customerService.searchCustomer(value).subscribe(result => {
+      this.options = result["foundCustomers"].map(item => {
+        return item.name
+      });
+    });
+
+  }
+
+  searchTextChange(newValue: any) {
+    this.customerService.searchCustomer(newValue.target.value).pipe(first())
+      .subscribe(result => {
+        this.options = result["foundCustomers"].map(item => {
+          return item.name
+        });
+      });
   }
 }

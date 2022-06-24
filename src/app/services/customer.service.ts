@@ -25,7 +25,8 @@ export class CustomerService extends DataService {
   }
 
   searchCustomer(searchText: String) {
-    return this.postData('customer/search', searchText);
+    let searchTextObj = new Object({searchText: searchText})
+    return this.postData('customer/search', searchTextObj);
   }
 
 }

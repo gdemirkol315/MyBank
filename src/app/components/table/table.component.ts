@@ -10,6 +10,7 @@ import {Component, Input, OnInit} from '@angular/core';
 //TODO: Improve link handling. This is not Clean!!!
 
 export class TableComponent implements OnInit {
+  //TODO: create new attribute for column definitions
   /**
    * This component supplies generic approach for creating tables in angular.
    *

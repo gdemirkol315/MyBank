@@ -5,6 +5,7 @@ import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {Customer} from "../../models/customer.model";
 import {CustomerService} from "../../services/customer.service";
+import {map} from "rxjs";
 
 @Component({
   selector: "new-loan",
@@ -17,7 +18,7 @@ export class NewLoanComponent {
   generatedPaymentTable;
   generated = false;
   nameSearch: string = "";
-  foundCustomers;
+  foundCustomerNames: string [];
   selectedCustomer: Customer;
 
 
@@ -57,10 +58,11 @@ export class NewLoanComponent {
     this.newLoan.periodicity = event;
   }
 
-  searchCustomer(nameSearch: NgModel) {
-    this.customerService.searchCustomer(nameSearch.value)
-      .subscribe(foundCustomers => {
-        this.foundCustomers = foundCustomers;
+  searchCustomer(nameSearch) {
+    this.customerService.searchCustomer(nameSearch)
+      .subscribe((result) => {
+        let foundCustomers = result['foundCustomers'];
+        this.foundCustomerNames = foundCustomers.map(customer => customer['name']);
       });
   }
 }

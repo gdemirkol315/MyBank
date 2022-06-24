@@ -2,19 +2,7 @@
   <h4>Please fill in loan details:</h4>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onGenerate(newLoanForm)" #newLoanForm="ngForm" *ngIf="!isLoading">
-    <mat-form-field>
-      <mat-label>Customer Name</mat-label>
-      <input
-        matInput
-        type="text"
-        name="customer Name"
-        [ngModel]="nameSearch"
-        #namesearch ="ngModel"
-        required
-        placeholder="Customer Name"
-        (change)="searchCustomer(namesearch)"
-        >
-    </mat-form-field>
+    <dropdown-autocomplete header="Customer Name"></dropdown-autocomplete>
     <br>
     <dropdown optionHeader="Currency" optionURL="newloan" valName="currencies" (optionChange)="ccySet($event)"></dropdown>
     <br>
