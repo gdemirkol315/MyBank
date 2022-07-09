@@ -13,7 +13,7 @@ router.get("", (req, res) => {
 router.post("/generate", (req, res) => {
   let newLoan = req.body;
   res.status(200).json({
-    message: "Currencies fetched successfully!",
+    message: "Repayment plan generated successfully!",
     dataSet: mainNewLoan.generateNewLoan(newLoan.amount,
       newLoan.interestRate,
       newLoan.periodicity,

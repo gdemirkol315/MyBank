@@ -29,7 +29,7 @@ import {TestComponent} from "./components/test/test.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {DropdownAutocompleteComponent} from "./components/dropdown-autocomplete/dropdown-autocomplete.component";
+import {CustomernameAutocompleteComponent} from "./components/customername-autocomplete/customername-autocomplete.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import {DropdownAutocompleteComponent} from "./components/dropdown-autocomplete/
     TestComponent,
     NotFoundComponent,
     CustomerProfileComponent,
-    DropdownAutocompleteComponent
+    CustomernameAutocompleteComponent
   ],
     imports: [
         BrowserModule,

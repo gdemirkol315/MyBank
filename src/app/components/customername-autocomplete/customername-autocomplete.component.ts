@@ -1,35 +1,24 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {first, Observable} from "rxjs";
 import {CustomerService} from "../../services/customer.service";
 
 
 @Component({
-  selector: 'dropdown-autocomplete',
-  templateUrl: './dropdown-autocomplete.component.html'
+  selector: 'customername-autocomplete',
+  templateUrl: './customername-autocomplete.component.html'
 })
-export class DropdownAutocompleteComponent {
+export class CustomernameAutocompleteComponent {
 
   options: string[];
   @Input() header;
+  @Output() selectionChange = new EventEmitter<string>();
   textChange= new Observable<string>();
   myControl = new FormControl('');
   searchText: string;
 
 
   constructor(private customerService: CustomerService) {
-  }
-
-
-
-  searchCustomer(value: string) {
-
-    this.customerService.searchCustomer(value).subscribe(result => {
-      this.options = result["foundCustomers"].map(item => {
-        return item.name
-      });
-    });
-
   }
 
   searchTextChange(newValue: any) {
@@ -39,5 +28,13 @@ export class DropdownAutocompleteComponent {
           return item.name
         });
       });
+  }
+
+  getCustomerId(customerName: any) {
+    this.customerService.searchCustomer(customerName).subscribe(result => {
+      this.selectionChange.emit(result["foundCustomers"].map(item => {
+        return item.customerId
+      })[0]);
+    });
   }
 }

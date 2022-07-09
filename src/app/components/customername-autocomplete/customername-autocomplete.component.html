@@ -7,9 +7,9 @@
            matInput
            [formControl]="myControl"
            [matAutocomplete]="auto"
-           [ngModel]="searchText" (change)="searchTextChange($event)">
+           [ngModel]="searchText" (keydown)="searchTextChange($event)" >
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
+      <mat-option *ngFor="let option of options" [value]="option" (onSelectionChange)="getCustomerId($event.source.value)">
         {{option}}
       </mat-option>
     </mat-autocomplete>

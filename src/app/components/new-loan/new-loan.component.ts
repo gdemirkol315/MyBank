@@ -5,7 +5,6 @@ import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {Customer} from "../../models/customer.model";
 import {CustomerService} from "../../services/customer.service";
-import {map} from "rxjs";
 
 @Component({
   selector: "new-loan",
@@ -14,10 +13,10 @@ import {map} from "rxjs";
 export class NewLoanComponent {
 
   newLoan = new Loan();
+  customerId:string ="";
   isLoading = false;
   generatedPaymentTable;
   generated = false;
-  nameSearch: string = "";
   foundCustomerNames: string [];
   selectedCustomer: Customer;
 
@@ -33,7 +32,7 @@ export class NewLoanComponent {
     this.newLoan.interestRate = form.value.interestRate;
     this.newLoanService.generate(this.newLoan)
       .subscribe(paymentSchedule => {
-        this.generatedPaymentTable = paymentSchedule;
+        this.generatedPaymentTable = paymentSchedule['dataSet'];
         console.log(this.generatedPaymentTable)
         this.generated = (this.generatedPaymentTable.length > 0);
       });
@@ -64,5 +63,9 @@ export class NewLoanComponent {
         let foundCustomers = result['foundCustomers'];
         this.foundCustomerNames = foundCustomers.map(customer => customer['name']);
       });
+  }
+
+  setCustomerId(customerId: any) {
+    this.customerId = customerId;
   }
 }
