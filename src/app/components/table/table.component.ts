@@ -27,16 +27,11 @@ export class TableComponent implements OnInit {
    *                     }
    */
   @Input() dataSource;
-  columnSettings: string[]
+  @Input() columnSettings;
   columnKeys: string[]
 
   ngOnInit(): void {
-    if (this.dataSource.length > 0) {
-      this.columnSettings = this.dataSource[0];
       this.columnKeys = Object.keys(this.columnSettings);
-      this.dataSource.shift();
-    }
-
   }
 
 

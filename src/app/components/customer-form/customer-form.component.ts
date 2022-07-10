@@ -4,6 +4,7 @@ import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer.model";
 import {AlertService} from "../../services/alert.service";
 import {first} from "rxjs";
+import header from '../../vals/foundcustomer.json';
 
 @Component({
   selector: 'customer',
@@ -23,8 +24,10 @@ export class CustomerFormComponent implements OnInit {
   rating: number;
   private entityType: string;
   foundCustomers: any[] = new Array();
+  foundCustomersHeader: any;
 
   constructor(private customerService: CustomerService, private alertService: AlertService) {
+    this.foundCustomersHeader = header;
   }
 
   ngOnInit(): void {
@@ -45,15 +48,6 @@ export class CustomerFormComponent implements OnInit {
 
     this.customerService.searchCustomer(searchText).pipe(first()).subscribe(result => {
       this.foundCustomers = result['foundCustomers'];
-      this.foundCustomers.unshift({
-        "customerId": "Customer Id##text",
-        "type": "Type##text",
-        "name": "Name##text",
-        "lastname": "Last Name##text",
-        "entitytype": "Entity Type##text",
-        "rating" : "Rating##text",
-        "address": "Address##text"
-      });
     });
 
   }

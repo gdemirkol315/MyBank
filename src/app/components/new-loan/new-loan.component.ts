@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {NgForm, NgModel} from "@angular/forms";
+import {NgForm} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
-import {Customer} from "../../models/customer.model";
 import {CustomerService} from "../../services/customer.service";
+import header from '../../vals/newloan.json';
 
 @Component({
   selector: "new-loan",
@@ -18,12 +18,13 @@ export class NewLoanComponent {
   generatedPaymentTable;
   generated = false;
   foundCustomerNames: string [];
-  selectedCustomer: Customer;
+  newLoanHeaders;
 
 
   constructor(public route: ActivatedRoute,
               private newLoanService: NewloanService,
               private customerService: CustomerService) {
+    this.newLoanHeaders = header;
   }
 
 

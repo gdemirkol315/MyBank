@@ -108,7 +108,7 @@
   </form>
   <br>
   <div *ngIf="generated==true">
-    <custom-table [dataSource]=generatedPaymentTable>
+    <custom-table [dataSource]=generatedPaymentTable [columnSettings]="newLoanHeaders">
     </custom-table>
   </div>
 </mat-card>

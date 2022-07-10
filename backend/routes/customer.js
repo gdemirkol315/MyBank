@@ -26,7 +26,7 @@ router.get("/:customerId", (req, res, next) => {
   Customer.findOne({customerId: req.params.customerId})
     .then(customer => {
       if (customer) {
-        let customerTable = [JsonReader.getJsonContent('customerdetail_headers.json'), customer]
+        let customerTable =  [customer];
         res.status(200).json(customerTable);
       }
   })

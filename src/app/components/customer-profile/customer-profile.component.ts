@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {filter} from 'rxjs/operators';
 import {CustomerService} from "../../services/customer.service";
+import header from '../../vals/customerdetail.json';
 
 @Component({
   selector: 'customer',
@@ -12,8 +12,10 @@ export class CustomerProfileComponent implements OnInit {
   customerId: string;
   isLoading = true;
   tableContent;
+  customerdetailHeader;
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService) {
+    this.customerdetailHeader = header;
   }
 
   ngOnInit() {
