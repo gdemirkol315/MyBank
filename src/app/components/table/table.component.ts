@@ -56,6 +56,11 @@ export class TableComponent implements OnInit {
           month: "2-digit",
           day: "numeric"
         });
+      case "double":
+        return data.toLocaleString(
+          undefined,
+          {maximumFractionDigits: 4}
+        );
       case "percent":
         return parseFloat(data).toFixed(2) + "%";
     }

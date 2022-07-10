@@ -25,14 +25,15 @@ function calculatePaymentSchedule(loanAmount, interestRate, frequency, utilizati
   var previousPaymentDate = new Date(utilizationDate);
   var paymentDate = new Date();
 
-  if (paymentStart == utilizationDate) {
+  if (paymentStart.toString() == utilizationDate.toString()) {
     paymentDate = getNextPaymentDate(paymentStart, frequency);
   } else {
     paymentDate = paymentStart;
   }
-  payments.push(new Payment("utilization", -loanAmount, 0, interestRate, 0, null, utilizationDate))
+  payments.push(new Payment("utilization", -loanAmount, 0, interestRate, 0, utilizationDate, utilizationDate))
+
   for (let i = 0; i < nInstallments; i++) {
-    interestAmount = remainingPrincipal * getDifferenceInDays(paymentDate, previousPaymentDate) / 360 * interestRate / 100
+    interestAmount = remainingPrincipal * getDifferenceInDays(paymentDate, previousPaymentDate) / 360 * interestRate
     payments.push(new Payment(i, installmentAmount, remainingPrincipal, interestRate, interestAmount, previousPaymentDate, paymentDate));
     remainingPrincipal = remainingPrincipal - installmentAmount;
     previousPaymentDate = paymentDate;
