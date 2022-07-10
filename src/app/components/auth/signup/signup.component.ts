@@ -27,7 +27,8 @@ export class SignupComponent {
             this.alertService.success('Registration successful', { keepAfterRouteChange: true });
             this.router.navigate(['/login'], { relativeTo: this.route });
           }
-        }
+        },
+            err=>  this.alertService.error(err.error.message,{ autoClose: true })
       );
     }
 
