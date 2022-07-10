@@ -106,8 +106,9 @@
       type="submit">Generate Payment Schedule
     </button>
   </form>
-  <br>
   <div *ngIf="generated==true">
+    <button type="button" class="btn btn-primary" (click)="exportExcel()">Export as .xslx</button>
+    <br>
     <custom-table [dataSource]=generatedPaymentTable [columnSettings]="newLoanHeaders">
     </custom-table>
   </div>

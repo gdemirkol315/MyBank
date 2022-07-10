@@ -1,10 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {CustomerService} from "../../services/customer.service";
 import header from '../../vals/newloan.json';
+import {Workbook} from 'exceljs';
+import * as fs from 'file-saver';
 
 @Component({
   selector: "new-loan",
@@ -13,7 +15,7 @@ import header from '../../vals/newloan.json';
 export class NewLoanComponent {
 
   newLoan = new Loan();
-  customerId:string ="";
+  customerId: string = "";
   isLoading = false;
   generatedPaymentTable;
   generated = false;
@@ -37,7 +39,6 @@ export class NewLoanComponent {
         console.log(this.generatedPaymentTable)
         this.generated = (this.generatedPaymentTable.length > 0);
       });
-    ;
   }
 
   addDate(dateType: string, date) {
@@ -68,5 +69,32 @@ export class NewLoanComponent {
 
   setCustomerId(customerId: any) {
     this.customerId = customerId;
+  }
+
+  exportExcel() {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet('RepaymentSchedule');
+    let columnKeys = Object.keys(this.newLoanHeaders);
+    worksheet.columns = columnKeys.map(column => {
+      return {
+        header: column,
+        key: column,
+        width: 30
+      }
+    });
+
+    this.generatedPaymentTable.forEach(payment => {
+      let paymentObj = new Object();
+      columnKeys.forEach(column => {
+        paymentObj[column] = payment[column]
+      })
+      worksheet.addRow(paymentObj);
+    });
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      fs.saveAs(blob, 'RepaymentSchedule.xlsx');
+    })
+
   }
 }

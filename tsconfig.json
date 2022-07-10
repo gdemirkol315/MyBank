@@ -27,7 +27,12 @@
       "es2020",
       "dom",
       "ES2021.String"
-    ]
+    ],
+    "paths": {
+      "exceljs": [
+        "node_modules/exceljs/dist/exceljs.min"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
