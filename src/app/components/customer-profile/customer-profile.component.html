@@ -1,4 +1,11 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading">
-  <custom-table [dataSource]="tableContent" [columnSettings]="customerdetailHeader"></custom-table>
+  <mat-toolbar-row>
+    <span>Customer Details:</span>
+  </mat-toolbar-row>
+  <custom-table [dataSource]="customerDetail" [columnSettings]="customerdetailHeader"></custom-table>
+  <mat-toolbar-row>
+    <span>Loans:</span>
+  </mat-toolbar-row>
+  <custom-table [dataSource]="customerLoans" [columnSettings]="customerLoansHeader"></custom-table>
 </div>

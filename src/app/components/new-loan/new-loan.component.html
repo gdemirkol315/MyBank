@@ -11,7 +11,7 @@
         name="customerId"
         required
         [readonly]="true"
-        [value]="customerId"
+        [value]="newLoan.customerId"
         placeholder="Customer Id">
     </mat-form-field>
     <br>
@@ -108,6 +108,7 @@
   </form>
   <div *ngIf="generated==true">
     <button type="button" class="btn btn-primary" (click)="exportExcel()">Export as .xslx</button>
+    <button type="button" class="btn btn-primary" (click)="saveLoan()">Save</button>
     <br>
     <custom-table [dataSource]=generatedPaymentTable [columnSettings]="newLoanHeaders">
     </custom-table>

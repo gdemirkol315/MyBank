@@ -1,6 +1,7 @@
 
 export class Loan {
   id: string;
+  customerId: string;
   ccy: string;
   amount: number;
   interestRate: number;

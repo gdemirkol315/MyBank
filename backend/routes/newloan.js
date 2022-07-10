@@ -1,6 +1,7 @@
 const express = require('express');
 const JsonReader = require("../common/utils/json-reader");
 const mainNewLoan = require("./newloan_main");
+const Loan = require("../models/loan");
 const router = express.Router();
 
 router.get("", (req, res) => {
@@ -22,6 +23,34 @@ router.post("/generate", (req, res) => {
       newLoan.maturityDate
     )
   });
+});
+
+router.post("/saveLoan", (req, res) => {
+  const loan = new Loan({
+    customerId: req.body.customerId,
+    amount:req.body.amount,
+    interestRate: req.body.interestRate,
+    utilizationDate: req.body.utilizationDate,
+    firstPaymentDate: req.body.firstPaymentDate,
+    maturityDate: req.body.maturityDate,
+    ccy: req.body.ccy,
+    periodicity: req.body.periodicity
+  });
+  loan.save().then(result => {
+    res.status(201).json({
+      message: 'Customer created successfully'
+    });
+  });
+});
+
+router.get("/:customerId", (req, res, next) => {
+  Loan.findOne({customerId: req.params.customerId})
+    .then(loans => {
+      if (loans) {
+        let loansTable =  [loans];
+        res.status(200).json(loansTable);
+      }
+    })
 });
 
 module.exports = router;

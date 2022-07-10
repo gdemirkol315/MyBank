@@ -15,7 +15,6 @@ import * as fs from 'file-saver';
 export class NewLoanComponent {
 
   newLoan = new Loan();
-  customerId: string = "";
   isLoading = false;
   generatedPaymentTable;
   generated = false;
@@ -27,6 +26,7 @@ export class NewLoanComponent {
               private newLoanService: NewloanService,
               private customerService: CustomerService) {
     this.newLoanHeaders = header;
+    this.newLoan.customerId ="";
   }
 
 
@@ -68,7 +68,7 @@ export class NewLoanComponent {
   }
 
   setCustomerId(customerId: any) {
-    this.customerId = customerId;
+    this.newLoan.customerId =customerId;
   }
 
   exportExcel() {
@@ -96,5 +96,10 @@ export class NewLoanComponent {
       fs.saveAs(blob, 'RepaymentSchedule.xlsx');
     })
 
+  }
+
+  saveLoan() {
+    this.newLoanService.saveLoan(this.newLoan)
+      .subscribe();
   }
 }

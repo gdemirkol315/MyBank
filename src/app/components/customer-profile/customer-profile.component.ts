@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CustomerService} from "../../services/customer.service";
 import header from '../../vals/customerdetail.json';
+import headerLoans from '../../vals/customerloans.json';
 
 @Component({
   selector: 'customer',
@@ -11,23 +12,33 @@ import header from '../../vals/customerdetail.json';
 export class CustomerProfileComponent implements OnInit {
   customerId: string;
   isLoading = true;
-  tableContent;
+  customerDetail;
+  customerLoans;
   customerdetailHeader;
+  customerLoansHeader;
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService) {
     this.customerdetailHeader = header;
+    this.customerLoansHeader = headerLoans;
   }
 
   ngOnInit() {
     this.customerService
       .getCustomerObservable()
       .subscribe(customerTable => {
-        this.tableContent = customerTable;
+        this.customerDetail = customerTable;
         this.isLoading = false;
-      })
+      });
+    this.customerService
+      .getCustomerLoansObservable()
+      .subscribe(loansTable => {
+        this.customerLoans = loansTable;
+        this.isLoading = false;
+      });
     this.route.paramMap
       .subscribe(params => {
           this.customerService.getCustomer(Number(params.get('customerId')));
+          this.customerService.getCustomerLoans(Number(params.get('customerId')));
         }
       );
   }

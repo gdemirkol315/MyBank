@@ -7,6 +7,7 @@ import {first, Subject} from "rxjs";
 export class CustomerService extends DataService {
 
   private customer = new Subject();
+  private customerLoans = new Subject();
 
   getCustomer(customerId: number) {
     return this.getData('customer/' + customerId)
@@ -16,8 +17,20 @@ export class CustomerService extends DataService {
       });
   }
 
+  getCustomerLoans(customerId: number) {
+    return this.getData('newLoan/' + customerId)
+      .pipe(first())
+      .subscribe(customerObject => {
+        this.customerLoans.next(customerObject);
+      });
+  }
+
   getCustomerObservable() {
     return this.customer.asObservable();
+  }
+
+  getCustomerLoansObservable() {
+    return this.customerLoans.asObservable();
   }
 
   postCustomer(customer: Customer) {
