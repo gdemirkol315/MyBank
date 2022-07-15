@@ -38,13 +38,13 @@ router.post("/saveLoan", (req, res) => {
   });
   loan.save().then(result => {
     res.status(201).json({
-      message: 'Customer created successfully'
+      message: 'Loan saved successfully'
     });
   });
 });
 
 router.get("/:customerId", (req, res, next) => {
-  Loan.findOne({customerId: req.params.customerId})
+  Loan.find({customerId: req.params.customerId})
     .then(loans => {
       if (loans) {
         let loansTable =  [loans];
