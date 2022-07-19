@@ -47,7 +47,7 @@ router.get("/:customerId", (req, res, next) => {
   Loan.find({customerId: req.params.customerId})
     .then(loans => {
       if (loans) {
-        let loansTable =  [loans];
+        let loansTable =  loans;
         res.status(200).json(loansTable);
       }
     })
