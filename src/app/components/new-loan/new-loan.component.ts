@@ -1,12 +1,13 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {CustomerService} from "../../services/customer.service";
 import header from '../../vals/newloan.json';
 import {Workbook} from 'exceljs';
 import * as fs from 'file-saver';
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: "new-loan",
@@ -24,7 +25,9 @@ export class NewLoanComponent {
 
   constructor(public route: ActivatedRoute,
               private newLoanService: NewloanService,
-              private customerService: CustomerService) {
+              private customerService: CustomerService,
+              private alertService: AlertService,
+              private router: Router) {
     this.newLoanHeaders = header;
     this.newLoan.customerId ="";
   }
@@ -36,7 +39,6 @@ export class NewLoanComponent {
     this.newLoanService.generate(this.newLoan)
       .subscribe(paymentSchedule => {
         this.generatedPaymentTable = paymentSchedule['dataSet'];
-        console.log(this.generatedPaymentTable)
         this.generated = (this.generatedPaymentTable.length > 0);
       });
   }
@@ -100,6 +102,16 @@ export class NewLoanComponent {
 
   saveLoan() {
     this.newLoanService.saveLoan(this.newLoan)
-      .subscribe();
+      .subscribe((response) => {
+        if (response['isSaved'] == true) {
+          this.reloadPage("/newloan");
+          this.alertService.success('Loan Saved successfully!',{ keepAfterRouteChange: true });
+        }
+      });
+  }
+
+  reloadPage(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate([uri]));
   }
 }

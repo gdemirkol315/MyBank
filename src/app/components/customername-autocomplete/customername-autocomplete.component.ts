@@ -31,10 +31,11 @@ export class CustomernameAutocompleteComponent {
   }
 
   getCustomerId(customerName: any) {
-    this.customerService.searchCustomer(customerName).subscribe(result => {
-      this.selectionChange.emit(result["foundCustomers"].map(item => {
-        return item.customerId
-      })[0]);
-    });
+    this.customerService.searchCustomer(customerName).pipe(first())
+      .subscribe(result => {
+        this.selectionChange.emit(result["foundCustomers"].map(item => {
+          return item.customerId
+        })[0]);
+      });
   }
 }

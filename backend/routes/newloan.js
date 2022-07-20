@@ -38,7 +38,7 @@ router.post("/saveLoan", (req, res) => {
   });
   loan.save().then(result => {
     res.status(201).json({
-      message: 'Loan saved successfully'
+      isSaved: true
     });
   });
 });
