@@ -9,7 +9,6 @@
         matInput
         type="text"
         name="customerId"
-        required
         [readonly]="true"
         [value]="newLoan.customerId"
         placeholder="Customer Id">
@@ -85,8 +84,8 @@
     <br>
 
     <mat-form-field appearance="fill">
-      <mat-label>Choose first installment date</mat-label>
-      <input matInput [matDatepicker]="firstPaymentDate" (dateChange)="addDate('firstPaymentDate',$event.value)">
+      <mat-label>Choose first installment</mat-label>
+      <input matInput [matDatepicker]="firstPaymentDate" required (dateChange)="addDate('firstPaymentDate',$event.value)">
       <mat-datepicker-toggle matSuffix [for]="firstPaymentDate"></mat-datepicker-toggle>
       <mat-datepicker #firstPaymentDate></mat-datepicker>
     </mat-form-field>

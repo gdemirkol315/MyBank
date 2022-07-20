@@ -29,18 +29,40 @@ export class NewLoanComponent {
               private alertService: AlertService,
               private router: Router) {
     this.newLoanHeaders = header;
-    this.newLoan.customerId ="";
+    this.newLoan.customerId = "";
   }
 
 
   onGenerate(form: NgForm) {
     this.newLoan.amount = form.value.amount;
     this.newLoan.interestRate = form.value.interestRate;
-    this.newLoanService.generate(this.newLoan)
-      .subscribe(paymentSchedule => {
-        this.generatedPaymentTable = paymentSchedule['dataSet'];
-        this.generated = (this.generatedPaymentTable.length > 0);
-      });
+    if (this.isEntriesDone()) {
+      this.newLoanService.generate(this.newLoan)
+        .subscribe(paymentSchedule => {
+          this.generatedPaymentTable = paymentSchedule['dataSet'];
+          this.generated = (this.generatedPaymentTable.length > 0);
+          if (!this.generated) {
+            this.alertService.error('Unknown Error! Table not generated!');
+          }
+        });
+    }
+    else {
+      this.alertService.error('Please enter all the necessary fields!');
+    }
+  }
+
+  isEntriesDone() {
+    if (this.newLoan.amount == undefined
+          || this.newLoan.customerId == ""
+          || this.newLoan.ccy == undefined
+          || this.newLoan.interestRate == undefined
+          || this.newLoan.firstPaymentDate == undefined
+          || this.newLoan.maturityDate == undefined
+          || this.newLoan.periodicity == undefined
+          || this.newLoan.utilizationDate == undefined)
+      return false
+    else
+      return true
   }
 
   addDate(dateType: string, date) {
@@ -70,7 +92,7 @@ export class NewLoanComponent {
   }
 
   setCustomerId(customerId: any) {
-    this.newLoan.customerId =customerId;
+    this.newLoan.customerId = customerId;
   }
 
   exportExcel() {
@@ -105,13 +127,13 @@ export class NewLoanComponent {
       .subscribe((response) => {
         if (response['isSaved'] == true) {
           this.reloadPage("/newloan");
-          this.alertService.success('Loan Saved successfully!',{ keepAfterRouteChange: true });
+          this.alertService.success('Loan Saved successfully!', {keepAfterRouteChange: true});
         }
       });
   }
 
-  reloadPage(uri:string){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+  reloadPage(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
   }
 }
