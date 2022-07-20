@@ -69,7 +69,7 @@ function getNextPaymentDate(previousPaymentDate, paymentFrequency) {
     return addMonths(previousPaymentDate, 3);
   } else if (paymentFrequency == 'H') {
     return addMonths(previousPaymentDate, 6);
-  } else if (paymentFrequency == 'J') {
+  } else if (paymentFrequency == 'Y') {
     return addMonths(previousPaymentDate, 12);
   }
   throw 'ERROR: unknown periodicity'
@@ -83,7 +83,7 @@ function getPeriodicityDays(paymentFrequency) {
     return 92;
   } else if (paymentFrequency == 'H') {
     return 164;
-  } else if (paymentFrequency == 'J') {
+  } else if (paymentFrequency == 'Y') {
     return 365;
   }
   throw 'ERROR: unknown periodicity'
