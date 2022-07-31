@@ -14,4 +14,7 @@ export class NewloanService extends DataService {
     return this.postData('newloan/saveLoan', newLoan)
   }
 
+  getLoan(loanId: string) {
+    return this.postData('newloan/getLoan', {loanId: loanId})
+  }
 }

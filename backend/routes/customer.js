@@ -34,11 +34,9 @@ router.get("/:customerId", (req, res, next) => {
 
 router.post("/search", (req, res) => {
   let searchTxt = req.body.searchText;
-  console.log(searchTxt)
   Customer.find({
     "name": new RegExp(searchTxt, 'i')
   }).then(result => {
-    console.log(result)
     //TODO: Add headers at customer service level depending on parameters
     res.status(200).json({
       foundCustomers: result

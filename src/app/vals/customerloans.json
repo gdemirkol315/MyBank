@@ -1,5 +1,5 @@
 {
-  "loanId": "Loan Id##text",
+  "loanId": "Loan Id##text##?loanId?",
   "amount": "Amount##double",
   "ccy": "Currency##text",
   "interestRate": "Interest Rate##double",

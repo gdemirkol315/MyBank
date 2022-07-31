@@ -53,4 +53,17 @@ router.get("/:customerId", (req, res, next) => {
     })
 });
 
+router.post("/getLoan", (req, res, next) => {
+  Loan.find({loanId: req.body.loanId})
+    .then(loans => {
+      if (loans) {
+        let loansTable =  loans;
+        res.status(200).json(loansTable);
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+});
+
 module.exports = router;

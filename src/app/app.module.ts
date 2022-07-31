@@ -30,6 +30,7 @@ import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {CustomernameAutocompleteComponent} from "./components/customername-autocomplete/customername-autocomplete.component";
+import {GetLoanComponent} from "./components/get-loan/get-loan.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {CustomernameAutocompleteComponent} from "./components/customername-autoc
     TestComponent,
     NotFoundComponent,
     CustomerProfileComponent,
-    CustomernameAutocompleteComponent
+    CustomernameAutocompleteComponent,
+    GetLoanComponent
   ],
     imports: [
         BrowserModule,

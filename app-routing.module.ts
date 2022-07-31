@@ -7,6 +7,7 @@ import {AuthGuard} from "./src/app/guard/auth.guard";
 import {NotFoundComponent} from "./src/app/components/not-found/not-found.component";
 import {CustomerFormComponent} from "./src/app/components/customer-form/customer-form.component";
 import {CustomerProfileComponent} from "./src/app/components/customer-profile/customer-profile.component";
+import {GetLoanComponent} from "./src/app/components/get-loan/get-loan.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'newloan',
     component: NewLoanComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customer/:customerId/:loanId',
+    component: GetLoanComponent,
     canActivate: [AuthGuard]
   },
   {

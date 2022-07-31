@@ -5,9 +5,8 @@ import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {CustomerService} from "../../services/customer.service";
 import header from '../../vals/newloan.json';
-import {Workbook} from 'exceljs';
-import * as fs from 'file-saver';
 import {AlertService} from "../../services/alert.service";
+import {ExcelExportService} from "../../services/excel-export.service"
 
 @Component({
   selector: "new-loan",
@@ -96,30 +95,7 @@ export class NewLoanComponent {
   }
 
   exportExcel() {
-    let workbook = new Workbook();
-    let worksheet = workbook.addWorksheet('RepaymentSchedule');
-    let columnKeys = Object.keys(this.newLoanHeaders);
-    worksheet.columns = columnKeys.map(column => {
-      return {
-        header: column,
-        key: column,
-        width: 30
-      }
-    });
-
-    this.generatedPaymentTable.forEach(payment => {
-      let paymentObj = new Object();
-      columnKeys.forEach(column => {
-        paymentObj[column] = payment[column]
-      })
-      worksheet.addRow(paymentObj);
-    });
-
-    workbook.xlsx.writeBuffer().then((data) => {
-      let blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-      fs.saveAs(blob, 'RepaymentSchedule.xlsx');
-    })
-
+    ExcelExportService.exportExcel('RepaymentSchedule',this.newLoanHeaders,this.generatedPaymentTable)
   }
 
   saveLoan() {

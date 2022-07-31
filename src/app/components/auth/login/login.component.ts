@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
       this.authService.getAuthStatusListener().pipe(first()).subscribe(
         tokenChange => {
           if (this.authService.isAuthenticated()) {
-            this.router.navigate(['/newloan']);
+            this.router.navigate(['/customer']);
           } else {
             this.alertService.error(this.authService.errorMessage,{ autoClose: true });
           }
