@@ -1,4 +1,5 @@
 ## MyBank
+Local Installation:
 1) Install Nodejs latest stable version to your local machine:
    https://nodejs.dev/download/
 2) set environment variable nodejs
