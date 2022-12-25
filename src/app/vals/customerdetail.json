@@ -1,9 +1,0 @@
-{
-  "customerId": "Customer Id##text",
-  "type": "Type##text",
-  "name": "Name##text",
-  "lastname": "Last Name##text",
-  "entitytype": "Entity Type##text",
-  "rating" : "Rating##text",
-  "address": "Address##text"
-}

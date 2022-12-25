@@ -1,0 +1,84 @@
+{
+  "customerId": {
+    "caption": "Customer Id",
+    "type": "text",
+    "route": "customerId"
+  },
+  "type": {
+    "caption": "Type",
+    "type": "text"
+  },
+  "name": {
+    "caption": "Name",
+    "type": "text"
+  },
+  "address": {
+    "caption": "Address",
+    "type": "text"
+  },
+  "entitytype": {
+    "caption": "Entity Type",
+    "type": "text"
+  },
+  "rating": {
+    "caption": "Rating",
+    "type": "text"
+  },
+  "loanId": {
+    "caption": "Loan Id",
+    "type": "text",
+    "route": "loanId"
+  },
+  "amount": {
+    "caption": "Amount",
+    "type": "amount"
+  },
+  "ccy": {
+    "caption": "Currency",
+    "type": "text"
+  },
+  "interestRate": {
+    "caption": "Interest Rate",
+    "type": "double"
+  },
+  "utilizationDate": {
+    "caption": "Utilization Date",
+    "type": "date"
+  },
+  "maturityDate": {
+    "caption": "Maturity Date",
+    "type": "date"
+  },
+  "firstPaymentDate": {
+    "caption": "First Payment Date",
+    "type": "date"
+  },
+  "periodicity": {
+    "caption": "Periodicity",
+    "type": "text"
+  },
+  "id": {
+    "caption": "Id",
+    "type": "text"
+  },
+  "principalPayment": {
+    "caption": "Principal Payment",
+    "type": "amount"
+  },
+  "interestAmount": {
+    "caption": "Interest Amount",
+    "type": "amount"
+  },
+  "remainingPrincipal": {
+    "caption": "Remaining Principal",
+    "type": "amount"
+  },
+  "previousPaymentDate": {
+    "caption": "Previous Payment Date",
+    "type": "date"
+  },
+  "paymentDate": {
+    "caption": "Payment Date",
+    "type": "date"
+  }
+}

@@ -1,17 +1,20 @@
 import {Workbook} from 'exceljs';
 import * as fs from 'file-saver';
 import {Injectable} from "@angular/core";
-
+import fields from '../vals/fields.json';
+import {Constants} from '../misc/constants';
 
 @Injectable({providedIn: "root"})
 export class ExcelExportService {
-  public static exportExcel(wbName, headers, dataArray) {
+  public static exportExcel(wbName, dataArray) {
     let workbook = new Workbook();
     let worksheet = workbook.addWorksheet(wbName);
-    let columnKeys = Object.keys(headers);
+
+    let columnKeys = Object.keys(dataArray[0]);
+
     worksheet.columns = columnKeys.map(column => {
       return {
-        header: column,
+        header: fields[column][Constants.CAPTION],
         key: column,
         width: 30
       }

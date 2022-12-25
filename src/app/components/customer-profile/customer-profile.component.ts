@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CustomerService} from "../../services/customer.service";
-import header from '../../vals/customerdetail.json';
-import headerLoans from '../../vals/customerloans.json';
 
 @Component({
   selector: 'customer',
@@ -14,12 +12,8 @@ export class CustomerProfileComponent implements OnInit {
   isLoading = true;
   customerDetail;
   customerLoans;
-  customerdetailHeader;
-  customerLoansHeader;
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService) {
-    this.customerdetailHeader = header;
-    this.customerLoansHeader = headerLoans;
   }
 
   ngOnInit() {
@@ -27,13 +21,15 @@ export class CustomerProfileComponent implements OnInit {
       .getCustomerObservable()
       .subscribe(customerTable => {
         this.customerDetail = customerTable;
-        this.isLoading = false;
+        if (this.customerLoans != undefined)
+          this.isLoading = false;
       });
     this.customerService
       .getCustomerLoansObservable()
       .subscribe(loansTable => {
         this.customerLoans = loansTable;
-        this.isLoading = false;
+        if (this.customerDetail != undefined)
+          this.isLoading = false;
       });
     this.route.paramMap
       .subscribe(params => {

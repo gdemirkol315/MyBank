@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Loan} from "../../models/loan.model";
 import {NewloanService} from "../../services/newloan.service";
 import {CustomerService} from "../../services/customer.service";
-import header from '../../vals/newloan.json';
 import {AlertService} from "../../services/alert.service";
 import {ExcelExportService} from "../../services/excel-export.service"
 
@@ -19,7 +18,6 @@ export class NewLoanComponent {
   generatedPaymentTable;
   generated = false;
   foundCustomerNames: string [];
-  newLoanHeaders;
 
 
   constructor(public route: ActivatedRoute,
@@ -27,7 +25,6 @@ export class NewLoanComponent {
               private customerService: CustomerService,
               private alertService: AlertService,
               private router: Router) {
-    this.newLoanHeaders = header;
     this.newLoan.customerId = "";
   }
 
@@ -44,21 +41,20 @@ export class NewLoanComponent {
             this.alertService.error('Unknown Error! Table not generated!');
           }
         });
-    }
-    else {
+    } else {
       this.alertService.error('Please enter all the necessary fields!');
     }
   }
 
   isEntriesDone() {
     if (this.newLoan.amount == undefined
-          || this.newLoan.customerId == ""
-          || this.newLoan.ccy == undefined
-          || this.newLoan.interestRate == undefined
-          || this.newLoan.firstPaymentDate == undefined
-          || this.newLoan.maturityDate == undefined
-          || this.newLoan.periodicity == undefined
-          || this.newLoan.utilizationDate == undefined)
+      || this.newLoan.customerId == ""
+      || this.newLoan.ccy == undefined
+      || this.newLoan.interestRate == undefined
+      || this.newLoan.firstPaymentDate == undefined
+      || this.newLoan.maturityDate == undefined
+      || this.newLoan.periodicity == undefined
+      || this.newLoan.utilizationDate == undefined)
       return false
     else
       return true
@@ -95,7 +91,7 @@ export class NewLoanComponent {
   }
 
   exportExcel() {
-    ExcelExportService.exportExcel('RepaymentSchedule',this.newLoanHeaders,this.generatedPaymentTable)
+    ExcelExportService.exportExcel('RepaymentSchedule', this.generatedPaymentTable)
   }
 
   saveLoan() {

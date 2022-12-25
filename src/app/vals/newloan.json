@@ -1,9 +1,0 @@
-{
-  "id": "Id##text",
-  "principalPayment": "Principal Payment##amount",
-  "remainingPrincipal": "Remaining Payment##amount",
-  "interestRate": "Interest Rate##double",
-  "interestAmount": "Interest Amount##amount",
-  "previousPaymentDate": "Previous Payment Date##date",
-  "paymentDate": "Payment Date##date"
-}

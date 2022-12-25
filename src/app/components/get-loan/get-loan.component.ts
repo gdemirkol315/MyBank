@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NewloanService} from "../../services/newloan.service";
 import {ExcelExportService} from "../../services/excel-export.service";
-import header from '../../vals/newloan.json';
 
 @Component({
   selector: "get-loan",
@@ -10,14 +9,12 @@ import header from '../../vals/newloan.json';
 })
 export class GetLoanComponent implements OnInit {
 
-  private loanHeaders: { id: string; principalPayment: string; remainingPrincipal: string; interestRate: string; interestAmount: string; previousPaymentDate: string; paymentDate: string };
   private customerId;
 
   constructor(
     private route: ActivatedRoute,
     private newLoanService: NewloanService,
     private router: Router) {
-    this.loanHeaders = header;
   }
 
   ngOnInit(): void {
@@ -39,7 +36,7 @@ export class GetLoanComponent implements OnInit {
   generateExcel(loan) {
     this.newLoanService.generate(loan)
       .subscribe(result => {
-        ExcelExportService.exportExcel('RepaymentSchedule', this.loanHeaders, result['dataSet']);
+        ExcelExportService.exportExcel('RepaymentSchedule', result['dataSet']);
         this.router.navigate(['/customer/',this.customerId])
       });
   }
